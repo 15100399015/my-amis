@@ -5,9 +5,6 @@ import cx from 'classnames';
 import {autobind, translateSchema} from '../../util';
 import {Icon, InputBox, Tab, Tabs} from 'amis';
 import {EditorNodeType} from '../../store/node';
-import {isAlive} from 'mobx-state-tree';
-import type {Schema} from 'amis';
-import DialogList from './DialogList';
 
 @observer
 export class OutlinePanel extends React.Component<PanelProps> {
@@ -21,7 +18,6 @@ export class OutlinePanel extends React.Component<PanelProps> {
     const dom = e.currentTarget;
     const id = dom.getAttribute('data-node-id')!;
     const region = dom.getAttribute('data-node-region')!;
-    const manager = this.props.manager;
 
     if (region) {
       // 点击容器类型自动弹出「组件插入面板」有点干扰用户操作
@@ -39,15 +35,6 @@ export class OutlinePanel extends React.Component<PanelProps> {
   }
 
   @autobind
-  handleDialogNodeClick(
-    e: React.MouseEvent<HTMLAnchorElement>,
-    option: Schema
-  ) {
-    // const store = this.props.store;
-    // store.setPreviewDialogId(option.$$id);
-  }
-
-  @autobind
   handleEnter(e: React.MouseEvent) {
     const dom = e.currentTarget;
     const id = dom.getAttribute('data-node-id')!;
@@ -55,17 +42,6 @@ export class OutlinePanel extends React.Component<PanelProps> {
     const store = this.props.store;
 
     store.setHoverId(id, region);
-  }
-
-  @autobind
-  handleTabChange(key: string) {
-    const store = this.props.store;
-    if (key && isAlive(store)) {
-      store.changeOutlineTabsKey(key);
-      // if (key === 'component-outline') {
-      //   store.setPreviewDialogId();
-      // }
-    }
   }
 
   @autobind
@@ -199,10 +175,7 @@ export class OutlinePanel extends React.Component<PanelProps> {
           <span className="ae-Outline-node-text">
             {option.isCommonConfig
               ? `${option.label}-[公共配置]`
-              : this.renderTitleByKeyword(
-                  this.getDialogNodeLabel(option, type),
-                  curSearchElemKey
-                )}
+              : this.renderTitleByKeyword(option.label, curSearchElemKey)}
           </span>
         </a>
         {hasChildren ? (
@@ -216,135 +189,51 @@ export class OutlinePanel extends React.Component<PanelProps> {
     );
   }
 
-  getDialogNodeLabel(option: EditorNodeType, type?: 'dialog' | 'dialogView') {
-    if (!type) {
-      return option.label;
-    } else {
-      return this.getDialogLabel(option, true, 'dialogTitle');
-    }
-  }
-
-  getDialogLabel(
-    option: any,
-    isNode: boolean,
-    title: 'title' | 'dialogTitle' = 'title'
-  ) {
-    let rendererTitle = '';
-    if (isNode) {
-      rendererTitle = option.label;
-    }
-    if (option.type === 'dialog' || option.type === 'drawer') {
-      if (!isNode || (isNode && !option.region)) {
-        const titleStr = translateSchema(option[title]);
-        if (option.type === 'drawer') {
-          rendererTitle = `${titleStr || '抽屉式弹窗'}（抽屉式弹窗）`;
-        } else {
-          if (option.dialogType === 'confirm') {
-            rendererTitle = `${titleStr || '确认对话框'}（确认对话框）`;
-          } else {
-            rendererTitle = `${titleStr || '弹窗'}（弹窗）`;
-          }
-        }
-      }
-    }
-    return rendererTitle;
-  }
-
-  renderDialogItem(option: any, index: number) {
-    // const store = this.props.store;
-    // const children = store.root.children;
-    // const isSelectedDialog = option.$$id === store.previewDialogId;
-
-    const dialogLabel = this.getDialogLabel(option, false);
-
-    return (
-      <li className={cx('ae-Outline-node')} key={index}>
-        <a onClick={e => this.handleDialogNodeClick(e, option)}>
-          <span className="ae-Outline-node-text">
-            {this.renderTitleByKeyword(
-              dialogLabel,
-              this.state.curSearchElemKey
-            )}
-          </span>
-        </a>
-      </li>
-    );
-  }
-
   render() {
     const {curSearchElemKey} = this.state;
     const {store} = this.props;
-    const outlineTabsKey = store.outlineTabsKey || 'component-outline';
     const options = store.outline;
 
     return (
       <div className="ae-Outline-panel">
         <div className="panel-header">视图结构</div>
-        <Tabs
-          className="ae-outline-tabs"
-          linksClassName="ae-outline-tabs-header"
-          contentClassName="ae-outline-tabs-content"
-          tabsMode="line"
-          onSelect={this.handleTabChange}
-          activeKey={outlineTabsKey}
+        <InputBox
+          className="editor-InputSearch"
+          value={curSearchElemKey}
+          onChange={this.handleSearchElemKeyChange}
+          placeholder={'查询页面元素'}
+          clearable={false}
         >
-          <Tab
-            className={'ae-outline-tabs-panel'}
-            key={'component-outline'}
-            eventKey={'component-outline'}
-            title={'组件大纲'}
-          >
-            <InputBox
-              className="editor-InputSearch"
-              value={curSearchElemKey}
-              onChange={this.handleSearchElemKeyChange}
-              placeholder={'查询页面元素'}
-              clearable={false}
-            >
-              {curSearchElemKey ? (
-                <a onClick={this.clearSearchElemKey}>
-                  <Icon icon="close" className="icon" />
-                </a>
-              ) : (
-                <Icon icon="editor-search" className="icon" />
-              )}
-            </InputBox>
-            <hr className="margin-top" />
-            <div
-              className={cx('ae-Outline', 'hoverShowScrollBar', {
-                'ae-Outline--draging': store.dragging
-              })}
-              onDragOver={this.handleDragOver}
-              onDrop={this.handleDrop}
-            >
-              {store.dragging ? (
-                <div className="ae-Outline-tip">
-                  将目标拖入导航中的节点可以切换容器
-                </div>
-              ) : null}
-
-              {options.length ? (
-                <ul className="ae-Outline-list">
-                  {options.map((option, index) =>
-                    this.renderItem(option, index)
-                  )}
-                </ul>
-              ) : (
-                <div>加载中，请稍等...</div>
-              )}
-            </div>
-          </Tab>
-          {store.isSubEditor ? null : (
-            <Tab
-              className={'ae-outline-tabs-panel'}
-              key={'dialog-outline'}
-              eventKey={'dialog-outline'}
-              title={'弹窗列表'}
-            >
-              <DialogList store={store} classnames={cx} />
-            </Tab>
+          {curSearchElemKey ? (
+            <a onClick={this.clearSearchElemKey}>
+              <Icon icon="close" className="icon" />
+            </a>
+          ) : (
+            <Icon icon="editor-search" className="icon" />
           )}
-        </Tabs>
+        </InputBox>
+        <hr className="margin-top" />
+        <div
+          className={cx('ae-Outline', 'hoverShowScrollBar', {
+            'ae-Outline--draging': store.dragging
+          })}
+          onDragOver={this.handleDragOver}
+          onDrop={this.handleDrop}
+        >
+          {store.dragging ? (
+            <div className="ae-Outline-tip">
+              将目标拖入导航中的节点可以切换容器
+            </div>
+          ) : null}
+
+          {options.length ? (
+            <ul className="ae-Outline-list">
+              {options.map((option, index) => this.renderItem(option, index))}
+            </ul>
+          ) : (
+            <div>加载中，请稍等...</div>
+          )}
+        </div>
       </div>
     );
   }

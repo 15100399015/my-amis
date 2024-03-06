@@ -9,7 +9,7 @@ export default class App extends React.PureComponent {
     return (
       <div className="Editor-Demo">
         <div id="headerBar" className="Editor-header">
-          <div className="Editor-title">amis 可视化编辑器</div>
+          <div className="Editor-title">可视化</div>
         </div>
         <AMisSchemaEditor theme={curTheme} />
         <ToastComponent theme={curTheme} />

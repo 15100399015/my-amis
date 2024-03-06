@@ -1,6 +1,5 @@
 import {observer} from 'mobx-react';
 import React from 'react';
-import {Icon} from 'amis';
 import cx from 'classnames';
 import {EditorManager} from '../../manager';
 import {EditorStoreType} from '../../store/editor';
@@ -18,9 +17,7 @@ interface LeftPanelsProps {
   theme?: string;
 }
 
-interface LeftPanelsStates {
-  isFixedStatus: boolean;
-}
+interface LeftPanelsStates {}
 
 @observer
 export class LeftPanels extends React.Component<
@@ -30,9 +27,7 @@ export class LeftPanels extends React.Component<
   constructor(props: any) {
     super(props);
 
-    this.state = {
-      isFixedStatus: false // 默认非fixed模式
-    };
+    this.state = {};
   }
 
   @autobind
@@ -48,13 +43,6 @@ export class LeftPanels extends React.Component<
       // 折叠时则不显示任何tab面板
       changeLeftPanelKey('none');
     }
-  }
-
-  @autobind
-  handleFixed() {
-    this.setState({
-      isFixedStatus: !this.state.isFixedStatus
-    });
   }
 
   @autobind
@@ -74,7 +62,6 @@ export class LeftPanels extends React.Component<
 
   render() {
     const {store, manager, theme} = this.props;
-    const {isFixedStatus} = this.state;
     const leftPanelOpenStatus = store.leftPanelOpenStatus;
     const panels = store.getLeftPanels();
     const id = store.activeId;
@@ -122,21 +109,9 @@ export class LeftPanels extends React.Component<
           <div
             className={cx(
               'editor-left-panel width-draggable',
-              leftPanelOpenStatus ? '' : 'hidden-status',
-              isFixedStatus ? 'fixed-status' : ''
+              leftPanelOpenStatus ? '' : 'hidden-status'
             )}
           >
-            <div
-              className={`editor-panel-btn`}
-              editor-tooltip={isFixedStatus ? '关闭悬浮模式' : '开启悬浮模式'}
-              tooltip-position="right"
-            >
-              <Icon
-                icon={isFixedStatus ? 'editor-fixed' : 'editor-no-fixed'}
-                className="panel-btn"
-                onClick={this.handleFixed}
-              />
-            </div>
             <Tabs
               className="editorPanel-tabs"
               linksClassName="editorPanel-tabs-header"
@@ -172,9 +147,6 @@ export class LeftPanels extends React.Component<
               onClick={this.handleHidden}
             ></div>
           </div>
-        )}
-        {isFixedStatus && (
-          <div className="editor-left-panel-fixed-placeholder"></div>
         )}
         <DrawerPanel
           store={store}
