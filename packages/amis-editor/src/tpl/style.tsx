@@ -1,5 +1,6 @@
 import {setSchemaTpl, getSchemaTpl, defaultValue} from 'amis-editor-core';
 import type {SchemaCollection} from 'amis';
+import pick from 'lodash/pick';
 import kebabCase from 'lodash/kebabCase';
 
 setSchemaTpl('style:formItem', ({renderer, schema}: any) => {
@@ -153,6 +154,36 @@ setSchemaTpl(
         ]
       },
       {
+        header: '变换',
+        key: 'transform',
+        body: [
+          {
+            type: 'style-transform',
+            label: false,
+            name: 'style',
+            pipeIn: (value: any) => {
+              if (value['transform']) {
+                const transform: Record<string, any> = {};
+                (value['transform'] || []).forEach((item: any) => {
+                  const [key, value] = Object.entries(item)[0];
+                  if (key) transform[key] = value;
+                });
+                return {...value, transform};
+              }
+              return value;
+            },
+            pipeOut: (value: any) => {
+              const transform = Object.entries(value['transform']).map(
+                ([key, value]) => ({
+                  [key]: value
+                })
+              );
+              return {...value, transform};
+            }
+          }
+        ]
+      },
+      {
         header: '其他',
         key: 'other',
         body: [
@@ -169,33 +200,6 @@ setSchemaTpl(
               '50%': '0.5',
               '100%': '1'
             }
-          },
-          {
-            label: '光标类型',
-            name: 'style.cursor',
-            type: 'select',
-            mode: 'row',
-            menuTpl: {
-              type: 'html',
-              html: "<span style='cursor:${value};'>${label}</span><code class='ae-Code'>${value}</code>",
-              className: 'ae-selection-code'
-            },
-            pipIn: defaultValue('default'),
-            options: [
-              {label: '默认', value: 'default'},
-              {label: '自动', value: 'auto'},
-              {label: '无指针', value: 'none'},
-              {label: '悬浮', value: 'pointer'},
-              {label: '帮助', value: 'help'},
-              {label: '文本', value: 'text'},
-              {label: '单元格', value: 'cell'},
-              {label: '交叉指针', value: 'crosshair'},
-              {label: '可移动', value: 'move'},
-              {label: '禁用', value: 'not-allowed'},
-              {label: '可抓取', value: 'grab'},
-              {label: '放大', value: 'zoom-in'},
-              {label: '缩小', value: 'zoom-out'}
-            ]
           }
         ]
       }
@@ -732,5 +736,28 @@ setSchemaTpl(
         ]
       }
     ].filter(item => !~exclude.indexOf(item.key || ''));
+  }
+);
+
+setSchemaTpl(
+  'style:transform',
+  (option: {
+    exclude: string[] | string;
+    collapsed?: boolean;
+    extra?: any[];
+  }) => {
+    return [
+      {
+        header: '布局',
+        key: 'layout',
+        body: [
+          {
+            type: 'style-display',
+            label: false,
+            name: 'style'
+          }
+        ]
+      }
+    ];
   }
 );

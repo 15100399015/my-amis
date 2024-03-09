@@ -8,7 +8,19 @@
       "path": "./packages/amis-formula"
     },
     {
+      "path": "./packages/amis-editor"
+    },
+    {
+      "path": "./packages/amis-editor-core"
+    },
+    {
       "path": "./packages/amis-core"
+    },
+    {
+      "path": "./packages/amis-theme-editor-helper"
+    },
+    {
+      "path": "./packages/react-native-components"
     },
     {
       "path": "./packages/amis-ui"
@@ -16,8 +28,5 @@
     {
       "path": "./packages/amis"
     },
-    {
-      "path": "./packages/office-viewer"
-    }
   ]
 }

@@ -15,7 +15,6 @@
     "fis3-stop": "fis3 server stop",
     "start": "vite",
     "fis3-dev": "fis3 release -cwd ./public",
-    "deploy-gh-page": "sh ./deploy-gh-pages.sh",
     "build": "npm run build --workspaces",
     "build-esm": "npm run build-esm --workspaces",
     "test": "npm test --workspaces",
@@ -23,12 +22,10 @@
     "prepare": "husky install",
     "coverage": "jest --coverage --collectCoverage=v8",
     "version": "lerna version",
-    "release": "npm run build --workspaces && lerna publish from-package --registry=https://registry.npmjs.org --ignore-scripts",
     "revision": "ts-node ./scripts/generate-revision.ts",
     "getChangeLog": "ts-node ./scripts/getChangeLog",
     "stylelint": "npx stylelint 'packages/**/*.scss'",
-    "typecheck": "tsc --noEmit",
-    "publish": "npx publish"
+    "typecheck": "tsc --noEmit"
   },
   "husky": {
     "hooks": {
@@ -41,9 +38,12 @@
     ]
   },
   "dependencies": {
+    "@types/react-native": "^0.73.0",
     "path-to-regexp": "^6.2.0",
     "postcss": "^8.4.14",
     "qs": "6.9.7",
+    "react-native-web": "^0.19.10",
+    "react-native-web-linear-gradient": "^1.1.2",
     "smooth-signature": "^1.0.13"
   },
   "devDependencies": {
@@ -135,7 +135,6 @@
       "^amis\\-ui$": "<rootDir>/packages/amis-ui/src/index.tsx",
       "^amis\\-core$": "<rootDir>/packages/amis-core/src/index.tsx",
       "^amis\\-formula$": "<rootDir>/packages/amis-formula/src/index.ts",
-      "^office\\-viewer$": "<rootDir>/packages/office-viewer/src/index.ts",
       "^amis$": "<rootDir>/packages/amis/src/index.tsx"
     },
     "setupFilesAfterEnv": [

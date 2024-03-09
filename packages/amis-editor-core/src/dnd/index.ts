@@ -396,19 +396,29 @@ export class EditorDNDManager {
       ) as HTMLElement;
 
       if (dragContainerItem) {
-        const curInset = dragContainerItem.style.inset || 'auto';
-        const insetArr = curInset.split(' ');
+        const style = dragContainerItem.style || {};
+        const allAuto = [
+          style.top || 'auto',
+          style.right || 'auto',
+          style.bottom || 'auto',
+          style.left || 'auto'
+        ].every(e => e === 'auto');
         const inset = {
-          top: insetArr[0] || 'auto',
-          right: insetArr[1] || 'auto',
-          bottom: insetArr[2] || insetArr[0] || 'auto',
-          left: insetArr[3] || insetArr[1] || 'auto'
+          top: allAuto ? '0px' : style.top || 'auto',
+          right: style.right || 'auto',
+          bottom: style.bottom || style.top || 'auto',
+          left: allAuto ? '0px' : style.left || style.right || 'auto'
         };
-        dragContainerItem.style.inset = `${
-          inset.top !== 'auto' ? unitFormula(inset.top, dy) : 'auto'
-        } ${inset.right !== 'auto' ? unitFormula(inset.right, -dx) : 'auto'} ${
-          inset.bottom !== 'auto' ? unitFormula(inset.bottom, -dy) : 'auto'
-        } ${inset.left !== 'auto' ? unitFormula(inset.left, dx) : 'auto'}`;
+
+        const uf = unitFormula;
+        dragContainerItem.style.top =
+          inset.top !== 'auto' ? uf(inset.top, dy) : 'auto';
+        dragContainerItem.style.right =
+          inset.right !== 'auto' ? uf(inset.right, -dx) : 'auto';
+        dragContainerItem.style.bottom =
+          inset.bottom !== 'auto' ? uf(inset.bottom, -dy) : 'auto';
+        dragContainerItem.style.left =
+          inset.left !== 'auto' ? uf(inset.left, dx) : 'auto';
       }
       this.lastX = e.clientX;
       this.lastY = e.clientY;

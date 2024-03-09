@@ -1,0 +1,34 @@
+.ae-transform {
+  &-items {
+    width: 70px;
+    margin-right: 10px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-item {
+    padding: 5px;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1;
+
+    &.active {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+    }
+  }
+
+  &-settings {
+    label {
+      flex-shrink: 0;
+      margin-right: 8px;
+      color: var(--Form-item-fontColor);
+    }
+
+    .flex {
+      margin-bottom: 6px;
+    }
+  }
+}

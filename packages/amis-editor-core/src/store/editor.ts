@@ -1496,34 +1496,32 @@ export const MainStore = types
           return;
         }
         const curSchema = self.getSchema(curDragId);
-        const curSchemaStyle = curSchema?.style || {};
+        const style = curSchema?.style || {};
         if (
-          (curDragId && curSchemaStyle?.position === 'fixed') ||
-          curSchemaStyle?.position === 'absolute'
+          (curDragId && style?.position === 'fixed') ||
+          style?.position === 'absolute'
         ) {
-          let curInset = curSchemaStyle.inset || 'auto';
-
-          const insetArr = curInset.split(' ');
+          const allAuto = [
+            style.top || 'auto',
+            style.right || 'auto',
+            style.bottom || 'auto',
+            style.left || 'auto'
+          ].every(e => e === 'auto');
           const inset = {
-            top: insetArr[0] || 'auto',
-            right: insetArr[1] || 'auto',
-            bottom: insetArr[2] || insetArr[0] || 'auto',
-            left: insetArr[3] || insetArr[1] || 'auto'
+            top: allAuto ? '0px' : style.top || 'auto',
+            right: style.right || 'auto',
+            bottom: style.bottom || style.top || 'auto',
+            left: allAuto ? '0px' : style.left || style.right || 'auto'
           };
-
-          const newInset = `${
-            inset.top !== 'auto' ? unitFormula(inset.top, dy) : 'auto'
-          } ${
-            inset.right !== 'auto' ? unitFormula(inset.right, -dx) : 'auto'
-          } ${
-            inset.bottom !== 'auto' ? unitFormula(inset.bottom, -dy) : 'auto'
-          } ${inset.left !== 'auto' ? unitFormula(inset.left, dx) : 'auto'}`;
-
+          const uf = unitFormula;
           this.changeValueById(curDragId, {
             ...curSchema,
             style: {
-              ...curSchemaStyle,
-              inset: newInset
+              ...style,
+              top: inset.top !== 'auto' ? uf(inset.top, dy) : 'auto',
+              left: inset.left !== 'auto' ? uf(inset.left, dx) : 'auto',
+              right: inset.right !== 'auto' ? uf(inset.right, -dx) : 'auto',
+              bottom: inset.bottom !== 'auto' ? uf(inset.bottom, -dy) : 'auto'
             }
           });
 

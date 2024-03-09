@@ -28,7 +28,7 @@ import compact from 'lodash/compact';
  */
 
 // 默认支持的单位
-const LayoutUnitOptions = ['px', '%', 'em', 'vh', 'vw'];
+const LayoutUnitOptions = ['px', '%'];
 
 // 定位模式
 setSchemaTpl(
@@ -47,42 +47,29 @@ setSchemaTpl(
       label:
         config?.label || tipedLabel('定位模式', '指定当前容器元素的定位类型'),
       name: config?.name || 'style.position',
-      value: config?.value || 'static',
+      value: config?.value || 'relative',
       visibleOn: config?.visibleOn,
       pipeIn: config?.pipeIn,
       pipeOut: config?.pipeOut,
       onChange: (value: string, oldValue: string, model: any, form: any) => {
-        if (value === 'static') {
-          form.deleteValueByName('style.inset');
-          form.deleteValueByName('style.zIndex');
-          form.deleteValueByName('originPosition');
-        } else if (value === 'fixed' || value === 'absolute') {
+        if (value === 'absolute') {
           form.setValueByName('style.zIndex', 1); // 避免被页面其他内容元素遮挡（导致不能选中）
-          form.setValueByName('style.inset', 'auto 50px 50px auto');
-          // 默认使用右下角进行相对定位
-          form.setValueByName('originPosition', 'right-bottom');
+          form.setValueByName('style.left', 'auto');
+          form.setValueByName('style.right', 'auto');
+          form.setValueByName('style.top', 'auto');
+          form.setValueByName('style.bottom', 'auto');
         } else if (value === 'relative') {
           form.setValueByName('style.zIndex', 1);
-          form.setValueByName('style.inset', 'auto');
-          form.deleteValueByName('originPosition');
-        }
-        if (value !== 'sticky') {
-          // 非滚动吸附定位
-          form.deleteValueByName('stickyStatus');
+          form.setValueByName('style.left', 'auto');
+          form.setValueByName('style.right', 'auto');
+          form.setValueByName('style.top', 'auto');
+          form.setValueByName('style.bottom', 'auto');
         }
       },
       options: [
         {
-          label: '默认(static)',
-          value: 'static'
-        },
-        {
           label: '相对(relative)',
           value: 'relative'
-        },
-        {
-          label: '固定(fixed)',
-          value: 'fixed'
         },
         {
           label: '绝对(absolute)',
@@ -128,32 +115,9 @@ setSchemaTpl(
           '布局位置',
           '指定当前容器元素的定位位置，用于配置 top、right、bottom、left。'
         ),
-      name: config?.name || 'style.inset',
+      name: config?.name || 'style',
       value: config?.value || 'auto',
-      visibleOn:
-        config?.visibleOn ??
-        'data.style && data.style.position && data.style.position !== "static"',
-      pipeIn: (value: any) => {
-        let curValue = value || 'auto';
-        if (isNumber(curValue)) {
-          curValue = curValue.toString();
-        }
-        if (!isString(curValue)) {
-          curValue = '0';
-        }
-        const inset = curValue.split(' ');
-        return {
-          insetTop: inset[0] || 'auto',
-          insetRight: inset[1] || 'auto',
-          insetBottom: inset[2] || inset[0] || 'auto',
-          insetLeft: inset[3] || inset[1] || 'auto'
-        };
-      },
-      pipeOut: (value: any) => {
-        return `${value.insetTop ?? 'auto'} ${value.insetRight ?? 'auto'} ${
-          value.insetBottom ?? 'auto'
-        } ${value.insetLeft ?? 'auto'}`;
-      }
+      visibleOn: config?.visibleOn
     };
 
     if (config?.mode === 'vertical') {
@@ -197,9 +161,7 @@ setSchemaTpl(
         ),
       name: config?.name || 'style.zIndex',
       value: config?.value,
-      visibleOn:
-        config?.visibleOn ??
-        'data.style && data.style.position && data.style.position !== "static"',
+      visibleOn: config?.visibleOn ?? 'data.style && data.style.position',
       pipeIn: config?.pipeIn,
       pipeOut: config?.pipeOut
     };
@@ -879,6 +841,39 @@ setSchemaTpl(
           return undefined;
         }
       }
+    };
+  }
+);
+
+// 超出显示模式
+setSchemaTpl(
+  'layout:overflow',
+  (config?: {
+    label?: string;
+    name?: string;
+    value?: string;
+    visibleOn?: string;
+    pipeIn?: (value: any, data: any) => void;
+    pipeOut?: (value: any, data: any) => void;
+  }) => {
+    return {
+      type: 'select',
+      label: config?.label || '超出显示模式',
+      name: config?.name || 'style.overflow',
+      value: config?.value || 'visible',
+      visibleOn: config?.visibleOn,
+      pipeIn: config?.pipeIn,
+      pipeOut: config?.pipeOut,
+      options: [
+        {
+          label: '超出显示',
+          value: 'visible'
+        },
+        {
+          label: '超出隐藏',
+          value: 'hidden'
+        }
+      ]
     };
   }
 );

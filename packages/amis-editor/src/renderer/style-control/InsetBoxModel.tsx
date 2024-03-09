@@ -49,11 +49,11 @@ function InsetBoxModel({
     };
   }
 
-  function renderBoxItem(item: string) {
+  function renderBoxItem() {
     return (
       <>
         {directions.map((direction: Direction) => {
-          const propsName = camelCase(`${item}-${direction}`);
+          const propsName = direction;
 
           return (
             <input
@@ -66,7 +66,7 @@ function InsetBoxModel({
             />
           );
         })}
-        <div className="ae-BoxModel-title">{item.toUpperCase()}</div>
+        <div className="ae-BoxModel-title">{'adsa'}</div>
         {['lt', 'lb', 'rt', 'rb'].map(position => (
           <div key={position} className={cx('ae-BoxModel-line', position)} />
         ))}
@@ -77,7 +77,7 @@ function InsetBoxModel({
   return (
     <div className="mx-2 ae-BoxModel">
       <div className="ae-BoxModel-inner"></div>
-      {renderBoxItem('inset')}
+      {renderBoxItem()}
     </div>
   );
 }

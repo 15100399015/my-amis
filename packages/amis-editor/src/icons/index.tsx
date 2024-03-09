@@ -159,6 +159,9 @@ import layout_fixed_top from './layout/layout-fixed-top.svg';
 import inputAddFx from './other/+fx.svg';
 import inputFx from './other/fx.svg';
 import modalSetting from './other/modal-setting.svg';
+import corpusI18n from './other/corpus-i18n.svg';
+import pcPreview from './other/pc-preview.svg';
+import h5Preview from './other/h5-preview.svg';
 
 // 属性配置面板/显示类型
 import block from './display/block.svg';
@@ -315,6 +318,9 @@ registerIcon('property-sheet-plugin', propertySheet);
 registerIcon('tooltip-plugin', tooltip);
 registerIcon('divider-plugin', divider);
 registerIcon('modal-setting', modalSetting);
+registerIcon('pc-preview', pcPreview);
+registerIcon('h5-preview', h5Preview);
+registerIcon('corpus-i18n', corpusI18n);
 
 // 常见布局组件 icon x 13
 registerIcon('layout-absolute-plugin', layout_absolute);

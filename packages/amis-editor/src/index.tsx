@@ -29,6 +29,7 @@ import './renderer/style-control/BoxModel';
 import './renderer/style-control/Font';
 import './renderer/style-control/Border';
 import './renderer/style-control/BoxShadow';
+import './renderer/style-control/transform';
 import './renderer/style-control/Background';
 import './renderer/style-control/Display';
 import './renderer/style-control/InsetBoxModel';
@@ -51,6 +52,11 @@ import './renderer/crud2-control/CRUDFiltersControl';
 import './renderer/InputRangeValueControl';
 import './renderer/FunctionEditorControl';
 import './renderer/ListItemControl';
+import './renderer/View';
+import './renderer/Text';
+import './renderer/Image';
+import './renderer/ImageBackground';
+import './renderer/LinearGradient';
 
 import 'amis-theme-editor-helper';
 

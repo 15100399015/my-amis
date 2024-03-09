@@ -1,11 +1,19 @@
+// react native 组件
+export * from './ReactNative/Image';
+export * from './ReactNative/View';
+export * from './ReactNative/TouchableView';
+export * from './ReactNative/Text';
+export * from './ReactNative/ImageBackground';
+export * from './ReactNative/LinearGradient';
+
 // 布局容器
-export * from './Flex'; // flex布局
+// export * from './Flex'; // flex布局
 // export * from './Grid'; // 分栏
 // export * from './Container'; // 容器
 // export * from './Layout/Layout_free_container'; // 自由容器
 // export * from './Layout/Layout_sorption_container'; // 吸附容器
 // export * from './Layout/Layout_fixed'; // 悬浮容器
-// // export * from './Layout/Layout1_2_v4';
+// export * from './Layout/Layout1_2_v4';
 // export * from './CollapseGroup'; // 折叠面板
 // export * from './Panel'; // 面板
 // export * from './Tabs'; // 选项卡
@@ -66,7 +74,7 @@ export * from './Flex'; // flex布局
 // export * from './Form/Static'; // 静态展示框
 
 // 功能
-export * from './Button'; // 按钮
+// export * from './Button'; // 按钮
 // export * from './ButtonGroup'; // 按钮组
 // export * from './Nav'; // 导航
 // export * from './AnchorNav'; // 锚点导航
@@ -85,8 +93,8 @@ export * from './Button'; // 按钮
 // export * from './QRCode'; // 二维码
 
 // 展示
-export * from './Tpl'; // 文字
-export * from './Icon'; // 图标
+// export * from './Tpl'; // 文字
+// export * from './Icon'; // 图标
 // export * from './Link'; // 链接
 // export * from './List'; // 列表
 // export * from './List2'; // 列表
@@ -101,7 +109,7 @@ export * from './Icon'; // 图标
 // export * from './Chart'; // 图表
 // export * from './Sparkline'; // 走势图
 // export * from './Carousel'; // 轮播图
-export * from './Image'; // 图片展示
+// export * from './Image'; // 图片展示
 // export * from './Images'; // 图片集
 // export * from './Time'; // 时间展示
 // export * from './Date'; // 日期展示
@@ -117,7 +125,6 @@ export * from './Image'; // 图片展示
 // export * from './CodeView'; // 代码高亮
 // export * from './Markdown';
 // export * from './Collapse'; // 折叠器
-// export * from './OfficeViewer'; // 文档预览
 // export * from './Log'; // 日志
 
 // 其他

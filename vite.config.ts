@@ -65,6 +65,21 @@ export default defineConfig({
         replacement: 'moment/dist/locale'
       },
       {
+        find: 'react-native',
+        replacement: 'react-native-web'
+      },
+      {
+        find: 'react-native-linear-gradient',
+        replacement: 'react-native-web-linear-gradient'
+      },
+      {
+        find: 'react-native-components',
+        replacement: path.resolve(
+          __dirname,
+          './packages/react-native-components/src'
+        )
+      },
+      {
         find: 'amis-formula/lib',
         replacement: path.resolve(__dirname, './packages/amis-formula/src')
       },
@@ -103,10 +118,6 @@ export default defineConfig({
       {
         find: 'amis-editor-core',
         replacement: path.resolve(__dirname, './packages/amis-editor-core/src')
-      },
-      {
-        find: 'office-viewer',
-        replacement: path.resolve(__dirname, './packages/office-viewer/src')
       },
       {
         find: 'amis-theme-editor-helper',

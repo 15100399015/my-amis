@@ -253,7 +253,6 @@ export type SchemaType =
   | 'input-excel'
   | 'input-formula'
   | 'diff-editor'
-  | 'office-viewer'
   | 'pdf-viewer'
   | 'input-signature'
 

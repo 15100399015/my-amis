@@ -20,7 +20,9 @@ import moment from 'moment';
 const settings = {
   globals: {},
   commonConfig: {
-    footer: `window.amisVersionInfo={version:'${version}',buildTime:'${moment().format("YYYY-MM-DD")}'};`,
+    footer: `window.amisVersionInfo={version:'${version}',buildTime:'${moment().format(
+      'YYYY-MM-DD'
+    )}'};`
   }
 };
 
@@ -152,12 +154,7 @@ function transpileReactCreateElement() {
 }
 
 function getPlugins(format = 'esm') {
-  const overridePaths = [
-    'amis-formula',
-    'amis-core',
-    'amis-ui',
-    'office-viewer'
-  ].reduce(
+  const overridePaths = ['amis-formula', 'amis-core', 'amis-ui'].reduce(
     (prev, current) => ({
       ...prev,
       [current]: [getCompiledEntryPath(current, format)]

@@ -10,10 +10,16 @@
       "../../node_modules/@types"
     ]
   },
-  "include": ["src/**/*", "../amis-ui/src/custom.d.ts"],
+  "include": [
+    "src/**/*",
+    "../amis-ui/src/custom.d.ts"
+  ],
   "references": [
-    {"path": "../amis-core"},
-    {"path": "../amis-ui"},
-    {"path": "../office-viewer"}
+    {
+      "path": "../amis-core"
+    },
+    {
+      "path": "../amis-ui"
+    },
   ]
 }

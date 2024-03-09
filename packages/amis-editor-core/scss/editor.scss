@@ -49,6 +49,7 @@
 @import './style-control/box-model';
 @import './style-control/font';
 @import './style-control/border';
+@import './style-control/transform';
 @import './style-control/box-shadow';
 @import './style-control/background';
 @import './style-control/size';
@@ -548,7 +549,7 @@
 .ae-Resizer {
   width: 10px;
   height: 10px;
-  border: 2px solid $Editor-theme;
+  border: 1px solid $Editor-theme;
   background-color: #fff;
   transform: translate(-50%, -50%);
   position: absolute;
@@ -588,10 +589,10 @@
 .ae-border-HResizer {
   position: absolute;
   top: 0px;
-  right: -2px;
-  width: 2px;
+  right: -1px;
+  width: 1px;
   height: 100%;
-  border-right: 2px solid $Editor-theme;
+  border-right: 1px solid $Editor-theme;
   background-color: #fff;
   z-index: 99;
   pointer-events: all;
@@ -601,12 +602,12 @@
 
 .ae-border-HResizer {
   top: auto;
-  bottom: -2px;
+  bottom: -1px;
   right: 0px;
   border-right: none;
-  border-bottom: 2px solid $Editor-theme;
+  border-bottom: 1px solid $Editor-theme;
   width: 100%;
-  height: 2px;
+  height: 1px;
   cursor: ns-resize !important;
 }
 
@@ -670,8 +671,8 @@
   }
 
   &.selected {
-    background: rgba($Editor-hlbox--onActive-bg, 0.05);
-    border: 2px solid $Editor-hlbox--onActive-bg;
+    background: rgba($Editor-hlbox--onActive-bg, 0.03);
+    border: 1px solid $Editor-hlbox--onActive-bg;
 
     .ae-Editor-toolbar {
       background: $Editor-hlbox--onActive-bg;

@@ -260,7 +260,7 @@ export class BasicToolbarPlugin extends BasePlugin {
     const first = paths.pop()!;
     const host = node.host as EditorNodeType;
     const regionNode = node.parent as EditorNodeType;
-
+    console.log(selections, region);
     if (selections.length) {
       // 多选时的右键菜单
       menus.push({
@@ -530,6 +530,7 @@ export class BasicToolbarPlugin extends BasePlugin {
       const renderersPanel = store.panels.find(
         item => item.key === 'renderers'
       );
+      console.log(first);
       if (first.childRegions.length && renderersPanel) {
         if (first.childRegions.length > 1) {
           menus.push({
