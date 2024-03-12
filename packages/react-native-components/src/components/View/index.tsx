@@ -1,8 +1,11 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ViewProps} from 'react-native';
+import {useStyle} from '../../use/styles';
 
-interface IProps {}
+interface IProps extends ViewProps {}
 
 export function CustomView(props: IProps) {
-  return <View {...props} />;
+  const style = useStyle(props.style);
+
+  return <View {...props} style={style} />;
 }

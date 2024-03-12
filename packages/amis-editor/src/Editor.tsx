@@ -1,36 +1,24 @@
 /* eslint-disable */
 import * as React from 'react';
-import {Editor, ShortcutKey, BasePlugin, setThemeConfig} from './index';
-import {Select, Renderer, uuid, Button} from 'amis';
-import {currentLocale} from 'i18n-runtime';
 import {Portal} from 'react-overlays';
-import {Icon} from './icons/index';
 import {cxdData} from 'amis-theme-editor-helper';
+import {setThemeConfig, Editor, ShortcutKey} from 'amis-editor-core';
+import {Icon} from './icons/index';
+import 'amis';
+import 'amis-theme-editor-helper';
+import './component/BaseControl';
+import './builder/index';
+import './plugin/index';
+import './renderer/index';
+import './tpl/index';
 
-// 测试组织属性配置面板的国际化，可以放开如下注释
-// import './renderer/InputTextI18n';
-// import './renderer/TextareaI18n';
-// import './utils/overwriteSchemaTpl';
-// const i18nEnabled = true;
-const i18nEnabled = false;
 setThemeConfig(cxdData);
 
 const schema = {
   type: 'page',
   title: 'Simple Form Page',
   regions: ['body'],
-  body: [
-    {
-      type: 'form',
-      body: [
-        {
-          type: 'input-text',
-          name: 'a',
-          label: 'Text'
-        }
-      ]
-    }
-  ]
+  body: []
 };
 
 const formSchema = {
@@ -269,23 +257,7 @@ const variableSchemas = {
   }
 };
 
-const variableDefaultData = {
-  appVariables: {
-    ProductName: 'BCC',
-    Banlance: 1234.888,
-    ProductNum: 10,
-    isOnline: false,
-    ProductList: ['BCC', 'BOS', 'VPC'],
-    PROFILE: {
-      FirstName: 'Amis',
-      Age: 18,
-      Address: {
-        street: 'ShangDi',
-        postcode: 100001
-      }
-    }
-  }
-};
+const variableDefaultData = {};
 
 const variables: any = [
   {
@@ -303,38 +275,17 @@ const EditorType = {
   FORM: 'form'
 };
 
-const editorLanguages = [
-  {
-    label: '简体中文',
-    value: 'zh-CN'
-  },
-  {
-    label: 'English',
-    value: 'en-US'
-  }
-];
-
 export default class AMisSchemaEditor extends React.Component<any, any> {
   state: any = {
     preview: localStorage.getItem('editting_preview') ? true : false,
     type: localStorage.getItem('editting_preview_type') || EditorType.EDITOR,
     schema: localStorage.getItem('editting_schema')
       ? JSON.parse(localStorage.getItem('editting_schema')!)
-      : schema,
-    curLanguage: currentLocale() // 获取当前语料类型
+      : schema
   };
 
   constructor(props: any) {
     super(props);
-
-    if (i18nEnabled) {
-      this.state = {
-        ...this.state,
-        replaceText: {
-          'i18n:1189fb5d-ac5b-4558-b363-068ce5decc99': uuid()
-        }
-      };
-    }
 
     const type =
       localStorage.getItem('editting_preview_type') || EditorType.EDITOR;
@@ -375,19 +326,27 @@ export default class AMisSchemaEditor extends React.Component<any, any> {
     });
   };
 
-  changeLocale(value: any) {
-    localStorage.setItem('suda-i18n-locale', value);
-    window.location.reload();
-  }
-
   onSave = () => {
     const curSchema = this.state.schema;
     localStorage.setItem('editting_schema', JSON.stringify(curSchema));
   };
 
+  onSaveToServer = async () => {
+    fetch('http://localhost:3030/save', {
+      method: 'POST',
+      body: JSON.stringify(this.state.schema),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(res => res.json())
+      .then(() => {
+        alert('保存成功');
+      });
+  };
+
   handlePreviewChange = (preview: any) => {
     localStorage.setItem('editting_preview', preview ? 'true' : '');
-
     this.setState({
       preview: !!preview
     });
@@ -431,7 +390,7 @@ export default class AMisSchemaEditor extends React.Component<any, any> {
         onPreview={this.handlePreviewChange}
         onSave={this.onSave}
         className="is-fixed"
-        i18nEnabled={i18nEnabled}
+        i18nEnabled={false}
         theme={theme || 'cxd'}
         showCustomRenderersPanel={true}
         plugins={[]} // 存放常见布局组件
@@ -450,18 +409,13 @@ export default class AMisSchemaEditor extends React.Component<any, any> {
             replaceText
           } as any
         }
-        ctx={{
-          __page: {
-            num: 2
-          },
-          ...variableDefaultData
-        }}
+        ctx={{}}
       />
     );
   }
 
   render() {
-    const {preview, type, curLanguage} = this.state;
+    const {preview, type} = this.state;
     return (
       <div className="Editor-inner">
         <Portal container={() => document.querySelector('#headerBar') as any}>
@@ -493,39 +447,6 @@ export default class AMisSchemaEditor extends React.Component<any, any> {
 
             <div className="Editor-header-actions">
               <ShortcutKey />
-              {
-                // @ts-ignore
-                // vite编译时替换
-                __editor_i18n ? (
-                  <Select
-                    className="margin-left-space "
-                    options={editorLanguages}
-                    value={curLanguage}
-                    clearable={false}
-                    onChange={(e: any) => this.changeLocale(e.value)}
-                  />
-                ) : null
-              }
-
-              {i18nEnabled && (
-                <Button
-                  className="ml-2"
-                  level="info"
-                  onClick={() => {
-                    let _uuid = uuid();
-                    console.log('点击测试国际化按钮', _uuid);
-                    this.setState({
-                      appLocale: _uuid,
-                      replaceText: {
-                        'i18n:1189fb5d-ac5b-4558-b363-068ce5decc99': _uuid
-                      }
-                    });
-                  }}
-                >
-                  切换语料内容
-                </Button>
-              )}
-
               <div
                 className={`header-action-btn ${preview ? 'primary' : ''}`}
                 onClick={() => {
@@ -533,6 +454,14 @@ export default class AMisSchemaEditor extends React.Component<any, any> {
                 }}
               >
                 {preview ? '编辑' : '预览'}
+              </div>
+              <div
+                className={`header-action-btn`}
+                onClick={() => {
+                  this.onSaveToServer();
+                }}
+              >
+                同步至服务器
               </div>
             </div>
           </>

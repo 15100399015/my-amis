@@ -1,34 +1,16 @@
-import {
-  setSchemaTpl,
-  getSchemaTpl,
-  defaultValue,
-  tipedLabel
-} from 'amis-editor-core';
-import isNumber from 'lodash/isNumber';
-import isString from 'lodash/isString';
-import compact from 'lodash/compact';
-
-/**
- * 布局相关配置项
- * 备注: 当前合计新增22个布局相关配置项，详细如下：
- * 一、布局容器新增「定位模式」配置项，可选择：默认、相对、绝对、固定，其中绝对和固定可实现特殊布局（fixed：吸顶元素、吸底元素，不随指定页面内容滚动）；
- * 1. 相对、绝对和固定布局 均提供 「inset 配置项」（top、right、bottom、left）；
- * 2. 列级容器（布局容器中的直接子容器，比如 wrapper，container、嵌套布局容器）增加 「弹性模式」（固定宽度、弹性宽度）、「展示模式」（默认、弹性布局）、「默认宽度」配置项；
- * 3. 开启 弹性模式 后，增加 「占比设置」配置项；
- * 4. 展示模式 设置为 弹性布局（flex布局）后，新增 「排列方向」、「水平对齐方式」、「垂直对齐方式」、「自动换行」配置项；
- * 5. 相对、绝对和固定布局 均提供「层级」配置项（z-index）；
- * 备注：目前主要针对 布局容器（flex）、容器（container）和 包裹 （wrapper） 增加以上配置项。（布局容器 是 之前的 Flex 布局 组件 的升级版）
- *
- * 二、布局容器（flex）、容器（container）可通过以下新增配置项，实现滚动展示、居中展示等布局；
- * 1. 新增是否「固定高度」，设置成固定高度，则增加 「高度」配置项、「y轴滚动」模式配置；
- * 2. 新增是否「固定宽度」，设置成固定宽度，则增加「宽度」配置项、「x轴滚动」模式配置；
- * 3. 非固定宽度，新增「最大宽度」、「最小宽度」配置项；
- * 4. 非固定高度，新增「最大高度」、「最小高度」配置项；
- * 5. 设置了 固定宽度 或者 最大宽度时，新增「居中显示」配置项；
- */
+import {setSchemaTpl, defaultValue, tipedLabel} from 'amis-editor-core';
 
 // 默认支持的单位
-const LayoutUnitOptions = ['px', '%'];
+const LayoutUnitOptions = [
+  {
+    label: 'px',
+    value: ''
+  },
+  {
+    label: '%',
+    value: '%'
+  }
+];
 
 // 定位模式
 setSchemaTpl(
@@ -164,85 +146,6 @@ setSchemaTpl(
       visibleOn: config?.visibleOn ?? 'data.style && data.style.position',
       pipeIn: config?.pipeIn,
       pipeOut: config?.pipeOut
-    };
-
-    if (config?.mode === 'vertical') {
-      // 上下展示，可避免 自定义渲染器 出现挤压
-      return {
-        type: 'group',
-        mode: 'vertical',
-        visibleOn: config?.visibleOn,
-        body: [
-          {
-            ...configSchema
-          }
-        ]
-      };
-    } else {
-      // 默认左右展示
-      return configSchema;
-    }
-  }
-);
-
-// 显示类型
-setSchemaTpl(
-  'layout:display',
-  (config?: {
-    mode?: string;
-    label?: string;
-    name?: string;
-    value?: string;
-    visibleOn?: string;
-    isFlexItem?: boolean;
-    pipeIn?: (value: any, data: any) => void;
-    pipeOut?: (value: any, data: any) => void;
-    flexHide?: boolean;
-  }) => {
-    const configOptions = compact([
-      {
-        label: '块级(block)',
-        icon: 'block-display',
-        value: 'block'
-      },
-      {
-        label: '行内区块(inline-block)',
-        icon: 'inline-block-display',
-        value: 'inline-block'
-      },
-      {
-        label: '行内元素(inline)',
-        icon: 'inline-display',
-        value: 'inline'
-      },
-      !config?.flexHide && {
-        label: '弹性布局(flex)',
-        icon: 'flex-display',
-        value: 'flex'
-      }
-    ]);
-    const configSchema = {
-      type: 'icon-button-group',
-      label:
-        config?.label ||
-        tipedLabel(
-          '显示类型',
-          '默认为块级，可设置为弹性布局模式（flex布局容器）'
-        ),
-      name: config?.name || 'style.display',
-      value: config?.value || 'block',
-      visibleOn: config?.visibleOn,
-      options: configOptions,
-      pipeIn: config?.pipeIn,
-      pipeOut: config?.pipeOut,
-      onChange: (value: string, oldValue: string, model: any, form: any) => {
-        if (value !== 'flex' && value !== 'inline-flex') {
-          form.deleteValueByName('style.flexDirection');
-          form.deleteValueByName('style.justifyContent');
-          form.deleteValueByName('style.alignItems');
-          form.deleteValueByName('style.flexWrap');
-        }
-      }
     };
 
     if (config?.mode === 'vertical') {
@@ -515,67 +418,50 @@ setSchemaTpl(
     name?: string;
     value?: string;
     visibleOn?: string;
-    isFlexColumnItem?: boolean;
-    onText?: string;
-    offText?: string;
+    pipeIn?: (value: any, data: any) => void;
+    pipeOut?: (value: any, data: any) => void;
   }) => {
     return {
-      type: 'button-group-select',
-      size: 'xs',
+      type: 'input-range',
+      max: 12,
+      step: 1,
+      label: tipedLabel(
+        config?.label || '空间分配比例',
+        '设置flex值组件尺寸会具有弹性，并根据具体的 flex 值来按比例分配空间'
+      ),
       name: config?.name || 'style.flex',
-      options: [
-        {
-          label: '弹性',
-          value: '1 1 auto'
-        },
-        {
-          label: '固定',
-          value: '0 0 150px'
-        },
-        {
-          label: '适配',
-          value: '0 0 auto'
-        }
-      ],
-      label: config?.label || '弹性设置',
-      value: config?.value || '0 0 auto',
-      inputClassName: 'inline-flex justify-between',
+      value: config?.value || 0,
       visibleOn: config?.visibleOn,
-      onChange: (value: any, oldValue: boolean, model: any, form: any) => {
-        if (value === '1 1 auto') {
-          // 弹性
-          if (config?.isFlexColumnItem) {
-            // form.setValueByName('style.overflowY', 'auto');
-            form.deleteValueByName('style.height');
-          } else {
-            // form.setValueByName('style.overflowX', 'auto');
-            form.deleteValueByName('style.width');
-          }
-        } else if (value === '0 0 150px') {
-          // 固定
-          form.deleteValueByName('style.flexGrow');
-          form.setValueByName('style.flexBasis', '150px');
+      pipeIn: config?.pipeIn,
+      pipeOut: config?.pipeOut
+    };
+  }
+);
 
-          if (config?.isFlexColumnItem) {
-            form.deleteValueByName('style.height');
-          } else {
-            form.deleteValueByName('style.width');
-          }
-        } else if (value === '0 0 auto') {
-          // 适配
-          form.deleteValueByName('style.flexGrow');
-          form.deleteValueByName('style.flexBasis');
-          form.deleteValueByName('style.overflowX');
-          form.deleteValueByName('style.overflowY');
-          form.deleteValueByName('style.overflow');
-
-          if (config?.isFlexColumnItem) {
-            form.deleteValueByName('style.height');
-          } else {
-            form.deleteValueByName('style.width');
-          }
-        }
-      }
+// 弹性模式
+setSchemaTpl(
+  'layout:flex-shrink',
+  (config?: {
+    label?: string;
+    name?: string;
+    value?: string;
+    visibleOn?: string;
+    pipeIn?: (value: any, data: any) => void;
+    pipeOut?: (value: any, data: any) => void;
+  }) => {
+    return {
+      type: 'input-range',
+      max: 12,
+      step: 1,
+      label: tipedLabel(
+        config?.label || '缩小比例',
+        '定义项目的缩小比例，当空间溢出时容器将根据其子容器的flexShrink值来收缩其子容器'
+      ),
+      name: config?.name || 'style.flexShrink',
+      value: config?.value || 0,
+      visibleOn: config?.visibleOn,
+      pipeIn: config?.pipeIn,
+      pipeOut: config?.pipeOut
     };
   }
 );
@@ -639,9 +525,8 @@ setSchemaTpl(
           '定义项目的放大比例，如果设置为0，即使父容器存在剩余空间，也不放大。'
         ),
       name: config?.name || 'style.flexGrow',
-      value: config?.value || 1,
-      visibleOn:
-        config?.visibleOn || 'data.style && data.style.flex !== "0 0 auto"',
+      value: config?.value || 0,
+      visibleOn: config?.visibleOn,
       pipeIn: config?.pipeIn,
       pipeOut: config?.pipeOut
     };
@@ -1520,6 +1405,51 @@ setSchemaTpl(
       className: `config-wrapper-contanier ${config.className || ''}`,
       body: config.body,
       visibleOn: config?.visibleOn
+    };
+  }
+);
+
+// 图片平铺模式
+setSchemaTpl(
+  'layout:image-resizeMode',
+  (config?: {
+    label?: string;
+    name?: string;
+    value?: string;
+    visibleOn?: string;
+    pipeIn?: (value: any, data: any) => void;
+    pipeOut?: (value: any, data: any) => void;
+  }) => {
+    return {
+      type: 'select',
+      label: config?.label || '图片平铺模式',
+      name: config?.name || 'resizeMode',
+      value: config?.value || 'center',
+      visibleOn: config?.visibleOn,
+      pipeIn: config?.pipeIn,
+      pipeOut: config?.pipeOut,
+      options: [
+        {
+          label: 'center',
+          value: 'center'
+        },
+        {
+          label: 'contain',
+          value: 'contain'
+        },
+        {
+          label: 'cover',
+          value: 'cover'
+        },
+        {
+          label: 'repeat',
+          value: 'repeat'
+        },
+        {
+          label: 'stretch',
+          value: 'stretch'
+        }
+      ]
     };
   }
 );

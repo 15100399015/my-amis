@@ -5,6 +5,9 @@
       "name": "monorepo"
     },
     {
+      "path": "./packages/amis-test-server"
+    },
+    {
       "path": "./packages/amis-formula"
     },
     {

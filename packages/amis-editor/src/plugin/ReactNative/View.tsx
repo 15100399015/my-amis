@@ -60,63 +60,81 @@ export class BaseViewPlugin extends LayoutBasePlugin {
       },
       {
         title: '布局',
-        body: [
-          getSchemaTpl('layout:position'),
-          getSchemaTpl('layout:inset', {
-            mode: 'vertical'
-          }),
-          getSchemaTpl('layout:z-index'),
+        body: getSchemaTpl('collapseGroup', [
+          {
+            header: '宽高',
+            key: 'Width&Height',
+            body: [
+              getSchemaTpl('layout:isFixedWidth', {
+                onChange: (value: boolean) => {
+                  context?.node.setWidthMutable(value);
+                }
+              }),
+              getSchemaTpl('layout:width'),
+              getSchemaTpl('layout:max-width'),
+              getSchemaTpl('layout:min-width'),
 
-          getSchemaTpl('layout:flex-setting', {
-            direction: curRendererSchema.direction,
-            justify: curRendererSchema.justify,
-            alignItems: curRendererSchema.alignItems
-          }),
-
-          getSchemaTpl('layout:flex-wrap', {
-            label: '换行'
-          }),
-
-          getSchemaTpl('layout:flex', {
-            label: 'flex'
-          }),
-          getSchemaTpl('layout:flex-grow', {
-            label: '扩大系数',
-            visibleOn:
-              'data.style && data.style.flex === "1 1 auto" && (data.style.position === "relative")'
-          }),
-          getSchemaTpl('layout:flex-basis', {
-            label: 'flex宽度',
-            visibleOn:
-              'data.style && data.style.flex === "1 1 auto" && (data.style.position === "relative")'
-          }),
-
-          getSchemaTpl('layout:isFixedWidth', {
-            onChange: (value: boolean) => {
-              context?.node.setWidthMutable(value);
-            }
-          }),
-          getSchemaTpl('layout:width', {}),
-          getSchemaTpl('layout:max-width', {}),
-          getSchemaTpl('layout:min-width', {}),
-
-          getSchemaTpl('layout:isFixedHeight', {
-            onChange: (value: boolean) => {
-              context?.node.setHeightMutable(value);
-            }
-          }),
-          getSchemaTpl('layout:height', {}),
-          getSchemaTpl('layout:max-height', {}),
-          getSchemaTpl('layout:min-height', {}),
-
-          getSchemaTpl('layout:overflow', {})
-        ]
+              getSchemaTpl('layout:isFixedHeight', {
+                onChange: (value: boolean) => {
+                  context?.node.setHeightMutable(value);
+                }
+              }),
+              getSchemaTpl('layout:height'),
+              getSchemaTpl('layout:max-height'),
+              getSchemaTpl('layout:min-height')
+            ]
+          },
+          {
+            header: 'Flex布局',
+            key: 'position',
+            body: [
+              getSchemaTpl('layout:flex-setting', {
+                direction: curRendererSchema.direction,
+                justify: curRendererSchema.justify,
+                alignItems: curRendererSchema.alignItems
+              }),
+              getSchemaTpl('layout:flex-wrap', {
+                label: 'flexWrap'
+              }),
+              getSchemaTpl('layout:flex', {
+                label: 'flex'
+              }),
+              getSchemaTpl('layout:flex-shrink', {
+                label: 'flexShrink'
+              }),
+              getSchemaTpl('layout:flex-grow', {
+                label: 'flexGrow'
+              }),
+              getSchemaTpl('layout:flex-basis', {
+                label: 'flexBasis'
+              })
+            ]
+          },
+          {
+            header: '定位',
+            key: 'position',
+            body: [
+              getSchemaTpl('layout:position'),
+              getSchemaTpl('layout:inset', {
+                mode: 'vertical'
+              })
+            ]
+          },
+          {
+            header: '其他',
+            key: 'other',
+            body: [
+              getSchemaTpl('layout:overflow'),
+              getSchemaTpl('layout:z-index')
+            ]
+          }
+        ])
       },
       {
         title: '外观',
         className: 'p-none',
         body: getSchemaTpl('collapseGroup', [
-          ...getSchemaTpl('style:common', ['font'])
+          ...getSchemaTpl('style:common', ['font', 'layout'])
         ])
       }
     ]);

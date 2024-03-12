@@ -16,10 +16,8 @@ import {
 import path from 'path';
 import svgr from '@svgr/rollup';
 import fs from 'fs';
-import i18nPlugin from 'plugin-react-i18n';
 import moment from 'moment';
 
-const i18nConfig = require('./i18nConfig');
 
 const settings = {
   globals: {},
@@ -37,7 +35,7 @@ const external = id =>
       )
       .join('|')})`
   ).test(id);
-const input = './src/index.tsx';
+const input = './src/App.tsx';
 
 export default [
   {
@@ -122,7 +120,6 @@ function getPlugins(format = 'esm') {
   };
 
   return [
-    i18nPlugin(i18nConfig),
     typescript(typeScriptOptions),
     svgr({
       svgProps: {

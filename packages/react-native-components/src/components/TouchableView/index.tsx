@@ -1,8 +1,11 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import {useStyle} from '../../use/styles';
 
-interface IProps {}
+interface IProps extends TouchableOpacityProps {}
 
 export function CustomTouchableView(props: IProps) {
-  return <TouchableOpacity {...props} />;
+  const style = useStyle(props.style);
+
+  return <TouchableOpacity {...props} style={style} />;
 }

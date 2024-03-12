@@ -49,8 +49,6 @@ export class BaseImagePlugin extends LayoutBasePlugin {
   events: RendererPluginEvent[] = [];
 
   panelBodyCreator = (context: BaseEventContext) => {
-    const curRendererSchema = context?.schema;
-
     return getSchemaTpl('tabs', [
       {
         title: '属性',
@@ -58,72 +56,79 @@ export class BaseImagePlugin extends LayoutBasePlugin {
           getSchemaTpl('imageUrl', {
             name: 'src',
             label: '图片地址'
+          }),
+          getSchemaTpl('layout:image-resizeMode', {
+            name: 'resizeMode',
+            label: '图片平铺模式'
           })
         ]
       },
       {
         title: '布局',
-        body: [
-          getSchemaTpl('layout:position', {
-            visibleOn: '!data.stickyStatus'
-          }),
-          getSchemaTpl('layout:originPosition'),
-          getSchemaTpl('layout:inset', {
-            mode: 'vertical'
-          }),
-          getSchemaTpl('layout:z-index'),
+        body: getSchemaTpl('collapseGroup', [
+          {
+            header: '宽高',
+            key: 'Width&Height',
+            body: [
+              getSchemaTpl('layout:isFixedWidth', {
+                onChange: (value: boolean) => {
+                  context?.node.setWidthMutable(value);
+                }
+              }),
+              getSchemaTpl('layout:width'),
+              getSchemaTpl('layout:max-width'),
+              getSchemaTpl('layout:min-width'),
 
-          getSchemaTpl('layout:flex-setting', {
-            direction: curRendererSchema.direction,
-            justify: curRendererSchema.justify,
-            alignItems: curRendererSchema.alignItems
-          }),
-
-          getSchemaTpl('layout:flex-wrap', {
-            label: 'flex-wrap'
-          }),
-
-          getSchemaTpl('layout:flex', {
-            label: 'flex'
-          }),
-          getSchemaTpl('layout:flex-grow', {
-            label: 'flex-grow',
-            visibleOn:
-              'data.style && data.style.flex === "1 1 auto" && (data.style.position === "static" || data.style.position === "relative")'
-          }),
-          getSchemaTpl('layout:flex-basis', {
-            label: 'flex-basis',
-            visibleOn:
-              'data.style && data.style.flex === "1 1 auto" && (data.style.position === "static" || data.style.position === "relative")'
-          }),
-
-          getSchemaTpl('layout:isFixedWidth', {
-            onChange: (value: boolean) => {
-              context?.node.setWidthMutable(value);
-            }
-          }),
-          getSchemaTpl('layout:width', {}),
-          getSchemaTpl('layout:max-width', {}),
-          getSchemaTpl('layout:min-width', {}),
-
-          getSchemaTpl('layout:overflow-x', {}),
-
-          getSchemaTpl('layout:isFixedHeight', {
-            onChange: (value: boolean) => {
-              context?.node.setHeightMutable(value);
-            }
-          }),
-          getSchemaTpl('layout:height', {}),
-          getSchemaTpl('layout:max-height', {}),
-          getSchemaTpl('layout:min-height', {}),
-          getSchemaTpl('layout:overflow-y', {})
-        ]
+              getSchemaTpl('layout:isFixedHeight', {
+                onChange: (value: boolean) => {
+                  context?.node.setHeightMutable(value);
+                }
+              }),
+              getSchemaTpl('layout:height'),
+              getSchemaTpl('layout:max-height'),
+              getSchemaTpl('layout:min-height')
+            ]
+          },
+          {
+            header: 'Flex布局',
+            key: 'position',
+            body: [
+              getSchemaTpl('layout:flex', {
+                label: 'flex'
+              }),
+              getSchemaTpl('layout:flex-shrink', {
+                label: 'flexShrink'
+              }),
+              getSchemaTpl('layout:flex-grow', {
+                label: 'flexGrow'
+              }),
+              getSchemaTpl('layout:flex-basis', {
+                label: 'flexBasis'
+              })
+            ]
+          },
+          {
+            header: '定位',
+            key: 'position',
+            body: [
+              getSchemaTpl('layout:position'),
+              getSchemaTpl('layout:inset', {
+                mode: 'vertical'
+              })
+            ]
+          },
+          {
+            header: '其他',
+            key: 'other',
+            body: [getSchemaTpl('layout:z-index')]
+          }
+        ])
       },
       {
         title: '外观',
         className: 'p-none',
         body: getSchemaTpl('collapseGroup', [
-          ...getSchemaTpl('style:common', ['font'])
+          ...getSchemaTpl('style:common', ['font', 'layout'])
         ])
       }
     ]);

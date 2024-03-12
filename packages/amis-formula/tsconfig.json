@@ -13,5 +13,9 @@
     "paths": {}
   },
   "include": ["src/**/*", "scripts/**/*"],
-  "references": []
+  "references": [
+    {"path": "../amis"},
+    {"path": "../amis-ui"},
+    {"path": "../amis-core"}
+  ]
 }

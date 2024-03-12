@@ -1,10 +1,12 @@
 import React from 'react';
-import {ImageBackground} from 'react-native';
+import {Image, ImageProps} from 'react-native';
+import {useStyle} from '../../use/styles';
 
-interface IProps {
+interface IProps extends ImageProps {
   src?: string;
 }
 
 export function CustomImage(props: IProps) {
-  return <ImageBackground {...props} source={{uri: props.src}} />;
+  const style = useStyle(props.style);
+  return <Image {...props} style={style} source={{uri: props.src}} />;
 }

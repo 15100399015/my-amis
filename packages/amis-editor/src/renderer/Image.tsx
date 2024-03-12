@@ -7,9 +7,15 @@ export default class ImageComponent<T> extends React.Component<any, object> {
   static defaultProps = {};
 
   render() {
-    const {style, src} = this.props;
+    const {style, src, resizeMode} = this.props;
 
-    return <CustomImage src={src} style={style}></CustomImage>;
+    return (
+      <CustomImage
+        src={src}
+        style={style}
+        resizeMode={resizeMode}
+      ></CustomImage>
+    );
   }
 }
 

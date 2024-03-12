@@ -1,4 +1,4 @@
-import {ContainerWrapper} from 'amis-editor-core';
+import {ContainerWrapper, RegionConfig} from 'amis-editor-core';
 import {registerEditorPlugin} from 'amis-editor-core';
 import {BaseEventContext, BasePlugin, getSchemaTpl} from 'amis-editor-core';
 import type {SchemaObject} from 'amis';
@@ -31,6 +31,13 @@ export class PagePlugin extends BasePlugin {
 
   // 普通容器类渲染器配置
   wrapper = ContainerWrapper;
+
+  regions: Array<RegionConfig> = [
+    {
+      key: 'body',
+      label: '内容区'
+    }
+  ];
 
   panelTitle = '页面';
   panelJustify = true;

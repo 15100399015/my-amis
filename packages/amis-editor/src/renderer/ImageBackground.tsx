@@ -10,10 +10,10 @@ export default class ImageBackgroundComponent<T> extends React.Component<
   static defaultProps = {};
 
   render() {
-    const {style, src, render, body} = this.props;
+    const {style, src, render, body, resizeMode} = this.props;
 
     return (
-      <CustomImageBackground style={style} src={src}>
+      <CustomImageBackground style={style} src={src} resizeMode={resizeMode}>
         {render('body', body)}
       </CustomImageBackground>
     );

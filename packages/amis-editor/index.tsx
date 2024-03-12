@@ -4,7 +4,7 @@
  */
 import * as React from 'react';
 import {createRoot} from 'react-dom/client';
-import App from './src/App';
+import App from './src/App.tsx';
 
 export function bootstrap(mountTo: HTMLElement, initalState: any) {
   const root = createRoot(mountTo);
