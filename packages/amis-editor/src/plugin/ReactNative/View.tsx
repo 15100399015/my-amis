@@ -11,6 +11,8 @@ export class BaseViewPlugin extends LayoutBasePlugin {
   static id = 'BaseViewPlugin';
   // 关联渲染器名字
   rendererName = 'base-view';
+  $schema = '/schemas/PageSchema.json';
+
   // 组件名称
   name = '容器';
   isBaseComponent = true;

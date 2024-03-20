@@ -6,8 +6,7 @@
     "packages/amis",
     "packages/amis-editor-core",
     "packages/amis-editor",
-    "packages/react-native-components",
-    "packages/app-platform-server"
+    "packages/react-native-components"
   ],
   "useWorkspaces": false,
   "version": "6.2.1"

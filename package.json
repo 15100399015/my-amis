@@ -8,12 +8,10 @@
     "packages/amis-editor-core",
     "packages/amis-editor",
     "packages/amis-theme-editor-helper",
-    "packages/react-native-components",
-    "packages/app-platform-server"
+    "packages/react-native-components"
   ],
   "scripts": {
     "start": "vite",
-    "vite:start": "vite build",
     "build": "npm run build --workspaces",
     "build-esm": "npm run build-esm --workspaces",
     "test": "npm test --workspaces",
@@ -76,7 +74,6 @@
     "magic-string": "^0.26.7",
     "marked": "^4.2.1",
     "monaco-editor": "0.30.1",
-    "plugin-react-i18n": "1.0.5",
     "postcss-scss": "^4.0.6",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",

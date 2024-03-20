@@ -41,7 +41,7 @@ export class BaseTouchableViewPlugin extends LayoutBasePlugin {
 
   panelTitle = '可触摸容器';
 
-  panelJustify = true;
+  panelJustify = false;
 
   // 事件定义
   events: RendererPluginEvent[] = [];

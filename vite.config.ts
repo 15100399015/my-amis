@@ -7,12 +7,6 @@ import fis3 from './scripts/fis3plugin';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  build: {
-    rollupOptions: {
-      input: path.join(__dirname, './packages/amis-editor/index.html')
-    },
-    outDir: 'output' // 输出目录设置为 'output'
-  },
   plugins: [
     fis3(),
     react({

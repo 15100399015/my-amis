@@ -71,7 +71,6 @@
     "concurrently": "^6.2.0",
     "css-loader": "^6.2.0",
     "faker": "^5.5.3",
-    "i18n-command": "^0.0.23-beta.15",
     "mini-css-extract-plugin": "^2.3.0",
     "prettier": "^2.2.1",
     "react": "^18.2.0",
