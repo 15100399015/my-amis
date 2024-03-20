@@ -29,7 +29,6 @@ import {
   Option
 } from 'amis-core';
 import {Button} from 'amis';
-import {i18n as _i18n} from 'i18n-runtime';
 import without from 'lodash/without';
 import {ActionConfig, ComponentInfo, ContextVariables} from './types';
 import CmptActionSelect from './comp-action-select';

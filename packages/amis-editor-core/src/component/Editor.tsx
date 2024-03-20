@@ -25,11 +25,8 @@ export interface EditorProps extends PluginEventListener {
   onChange: (value: SchemaObject) => void;
   preview?: boolean;
   isMobile?: boolean;
-  isSubEditor?: boolean;
   autoFocus?: boolean;
   className?: string;
-  $schemaUrl?: string;
-  schemas?: Array<any>;
   theme?: string;
   /** 应用语言类型 */
   appLocale?: string;
@@ -150,7 +147,6 @@ export default class Editor extends Component<EditorProps> {
 
     const {
       value,
-      isSubEditor = false,
       onChange,
       showCustomRenderersPanel,
       superEditorData,
@@ -164,7 +160,6 @@ export default class Editor extends Component<EditorProps> {
       {
         isMobile: props.isMobile,
         theme: props.theme,
-        isSubEditor,
         amisDocHost: props.amisDocHost,
         ctx: props.ctx,
         superEditorData,
@@ -182,7 +177,7 @@ export default class Editor extends Component<EditorProps> {
     this.manager = new EditorManager(config, this.store);
 
     // 子编辑器不再重新设置 editorStore
-    if (!(props.isSubEditor && (window as any).editorStore)) {
+    if ((window as any).editorStore) {
       (window as any).editorStore = this.store;
     }
 
@@ -210,17 +205,9 @@ export default class Editor extends Component<EditorProps> {
   }
 
   componentDidMount() {
-    const store = this.manager.store;
-    if (this.props.isSubEditor) {
-      // 等待子编辑器动画结束重新获取高亮组件位置
-      setTimeout(() => {
-        store.calculateHighlightBox(store.highlightNodes.map(node => node.id));
-      }, 500);
-    } else {
-      this.manager.trigger('init', {
-        data: this.manager
-      });
-    }
+    this.manager.trigger('init', {
+      data: this.manager
+    });
   }
 
   componentDidUpdate(prevProps: EditorProps) {
@@ -261,12 +248,6 @@ export default class Editor extends Component<EditorProps> {
   // 快捷功能键
   @autobind
   handleKeyDown(e: KeyboardEvent) {
-    // 弹窗模式不处理
-    if (this.props.isSubEditor) {
-      // e.defaultPrevented // 或者已经阻止不处理
-      return;
-    }
-
     const manager = this.manager;
     const store = manager.store;
 
@@ -563,7 +544,6 @@ export default class Editor extends Component<EditorProps> {
       data,
       previewProps,
       autoFocus,
-      isSubEditor,
       amisEnv
     } = this.props;
 

@@ -26,157 +26,6 @@ const formSchema = {
   fields: []
 };
 
-const schemas = [
-  {
-    type: 'object',
-    properties: {
-      'amisUser': {
-        type: 'object',
-        title: '用户信息',
-        properties: {
-          id: {
-            type: 'string',
-            title: '用户ID'
-          },
-          name: {
-            type: 'string',
-            title: '用户名'
-          },
-          email: {
-            type: 'string',
-            title: '邮箱'
-          },
-          nickName: {
-            type: 'string',
-            title: '昵称'
-          },
-          phone: {
-            type: 'string',
-            title: '手机号'
-          },
-          avatar: {
-            type: 'string',
-            title: '用户头像'
-          }
-        }
-      },
-      'amisApp': {
-        type: 'object',
-        title: '应用信息',
-        properties: {
-          id: {
-            type: 'string',
-            title: '应用ID'
-          },
-          name: {
-            type: 'string',
-            title: '应用名称'
-          },
-          logo: {
-            type: 'string',
-            title: '应用Logo'
-          },
-          env: {
-            type: 'string',
-            title: '当前运行环境'
-          }
-        }
-      },
-      'amisCompany': {
-        type: 'object',
-        title: '组织信息',
-        properties: {
-          id: {
-            type: 'string',
-            title: '组织ID'
-          },
-          name: {
-            type: 'string',
-            title: '组织名称'
-          },
-          logo: {
-            type: 'string',
-            title: '组织Logo'
-          },
-          key: {
-            type: 'string',
-            title: '组织标识'
-          }
-        }
-      },
-      'window:location': {
-        type: 'object',
-        title: '浏览器变量',
-        properties: {
-          href: {
-            type: 'string',
-            title: 'href'
-          },
-          origin: {
-            type: 'string',
-            title: 'origin'
-          },
-          protocol: {
-            type: 'string',
-            title: 'protocol'
-          },
-          host: {
-            type: 'string',
-            title: 'host'
-          },
-          hostname: {
-            type: 'string',
-            title: 'hostname'
-          },
-          port: {
-            type: 'string',
-            title: 'port'
-          },
-          pathname: {
-            type: 'string',
-            title: 'pathname'
-          },
-          search: {
-            type: 'string',
-            title: 'search'
-          },
-          hash: {
-            type: 'string',
-            title: 'hash'
-          }
-        }
-      }
-    }
-  },
-  {
-    type: 'object',
-    properties: {
-      __query: {
-        title: '页面入参',
-        type: 'object',
-        required: [],
-        properties: {
-          name: {
-            type: 'string',
-            title: '用户名'
-          }
-        }
-      },
-      __page: {
-        title: '页面变量',
-        type: 'object',
-        required: [],
-        properties: {
-          num: {
-            type: 'number',
-            title: '数量'
-          }
-        }
-      }
-    }
-  }
-];
-
 const variableSchemas = {
   type: 'object',
   $id: 'appVariables',
@@ -384,7 +233,6 @@ export default class AMisSchemaEditor extends React.Component<any, any> {
         preview={preview}
         isMobile={isMobile}
         value={schema}
-        schemas={schemas}
         variables={variables}
         onChange={this.handleChange}
         onPreview={this.handlePreviewChange}
@@ -394,7 +242,6 @@ export default class AMisSchemaEditor extends React.Component<any, any> {
         theme={theme || 'cxd'}
         showCustomRenderersPanel={true}
         plugins={[]} // 存放常见布局组件
-        $schemaUrl={`${location.protocol}//${location.host}/schema.json`}
         actionOptions={{
           showOldEntry: false
         }}

@@ -11,13 +11,10 @@ export class BaseTouchableViewPlugin extends LayoutBasePlugin {
   static id = 'BaseTouchableViewPlugin';
   // 关联渲染器名字
   rendererName = 'base-touchableview';
-  $schema = '/schemas/ContainerSchema.json';
-
   // 组件名称
   name = '可触摸容器';
   isBaseComponent = true;
   description = '一个简单的TouchableView组件。';
-  docLink = '/amis/zh-CN/components/container';
   tags = ['基本组件'];
   order = 5;
   icon = 'fa fa-square-o';

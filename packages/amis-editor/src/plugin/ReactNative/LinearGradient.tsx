@@ -11,13 +11,10 @@ export class BaseLinearGradientPlugin extends LayoutBasePlugin {
   static id = 'BaseLinearGradientPlugin';
   // 关联渲染器名字
   rendererName = 'base-lineargradient';
-  $schema = '/schemas/ContainerSchema.json';
-
   // 组件名称
   name = '线性渐变';
   isBaseComponent = true;
   description = '一个简单的LinearGradient组件。';
-  docLink = '/amis/zh-CN/components/container';
   tags = ['基本组件'];
   order = 6;
   icon = 'fa fa-square-o';
@@ -56,9 +53,8 @@ export class BaseLinearGradientPlugin extends LayoutBasePlugin {
       {
         title: '属性',
         body: [
-          getSchemaTpl('imageUrl', {
-            name: 'src',
-            label: '图片地址'
+          getSchemaTpl('theme:colorPickerGradient', {
+            label: '渐变'
           })
         ]
       },

@@ -12,18 +12,5 @@
   "include": [
     "src/**/*"
   ],
-  "references": [
-    {
-      "path": "../amis"
-    },
-    {
-      "path": "../amis-editor-core"
-    },
-    {
-      "path": "../amis-theme-editor-helper"
-    },
-    {
-      "path": "../react-native-components"
-    }
-  ]
+  "references": []
 }

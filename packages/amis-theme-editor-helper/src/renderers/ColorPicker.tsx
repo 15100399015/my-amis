@@ -27,7 +27,6 @@ import {
 import type {GlobalData} from '../helper/getGlobalData';
 import cloneDeep from 'lodash/cloneDeep';
 import debounce from 'lodash/debounce';
-import {i18n as _i18n} from 'i18n-runtime';
 import {
   getValueByPath,
   getInheritValue,
@@ -260,7 +259,7 @@ function ThemeColorList(props: ThemeColorProps) {
           });
           return show ? (
             <div key={i}>
-              <div className="ThemeColorList-title">{_i18n(item.label)}</div>
+              <div className="ThemeColorList-title">{item.label}</div>
               {item.children?.map((colors, i) => {
                 let show = colors.show;
                 colors.children?.forEach(n => {
@@ -271,7 +270,7 @@ function ThemeColorList(props: ThemeColorProps) {
                 return show ? (
                   <div className="ThemeColorList-content" key={i}>
                     <div className="ThemeColorList-content-title">
-                      {_i18n(colors.label)}
+                      {colors.label}
                     </div>
                     <div className="ThemeColorList-content-labels">
                       {colors.children?.map((color, i) =>
@@ -282,9 +281,7 @@ function ThemeColorList(props: ThemeColorProps) {
                             placement="top"
                             tooltip={{
                               children: () => (
-                                <div>{`${_i18n(color.label)}-${
-                                  color.realValue
-                                }`}</div>
+                                <div>{`${color.label}-${color.realValue}`}</div>
                               )
                             }}
                           >

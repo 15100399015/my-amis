@@ -11,13 +11,10 @@ export class BaseImagePlugin extends LayoutBasePlugin {
   static id = 'BaseImagePlugin';
   // 关联渲染器名字
   rendererName = 'base-image';
-  $schema = '/schemas/ContainerSchema.json';
-
   // 组件名称
   name = '图片';
   isBaseComponent = true;
   description = '一个简单的Image组件。';
-  docLink = '/amis/zh-CN/components/container';
   tags = ['基本组件'];
   order = 4;
   icon = 'fa fa-square-o';

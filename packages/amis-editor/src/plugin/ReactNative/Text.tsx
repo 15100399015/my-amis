@@ -11,13 +11,10 @@ export class BaseTextPlugin extends LayoutBasePlugin {
   static id = 'BaseTextPlugin';
   // 关联渲染器名字
   rendererName = 'base-text';
-  $schema = '/schemas/ContainerSchema.json';
-
   // 组件名称
   name = '文本';
   isBaseComponent = true;
   description = '一个简单的Text组件。';
-  docLink = '/amis/zh-CN/components/container';
   tags = ['基本组件'];
   order = 2;
   icon = 'fa fa-square-o';

@@ -517,6 +517,17 @@ setSchemaTpl('theme:colorPicker', (option: any = {}) => {
   };
 });
 
+// 渐变颜色选择器
+setSchemaTpl('theme:colorPickerGradient', (option: any = {}) => {
+  return {
+    mode: 'vertical',
+    type: 'amis-theme-color-picker-gradient',
+    label: '颜色',
+    name: `gradient`,
+    ...option
+  };
+});
+
 // 边框选择器
 setSchemaTpl('theme:border', (option: any = {}) => {
   return {
@@ -736,28 +747,5 @@ setSchemaTpl(
         ]
       }
     ].filter(item => !~exclude.indexOf(item.key || ''));
-  }
-);
-
-setSchemaTpl(
-  'style:transform',
-  (option: {
-    exclude: string[] | string;
-    collapsed?: boolean;
-    extra?: any[];
-  }) => {
-    return [
-      {
-        header: '布局',
-        key: 'layout',
-        body: [
-          {
-            type: 'style-display',
-            label: false,
-            name: 'style'
-          }
-        ]
-      }
-    ];
   }
 );

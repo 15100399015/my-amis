@@ -11,13 +11,10 @@ export class BaseImageBackgroundPlugin extends LayoutBasePlugin {
   static id = 'BaseImageBackgroundPlugin';
   // 关联渲染器名字
   rendererName = 'base-imagebackground';
-  $schema = '/schemas/ContainerSchema.json';
-
   // 组件名称
   name = '背景图容器';
   isBaseComponent = true;
   description = '一个简单的ImageBackground组件。';
-  docLink = '/amis/zh-CN/components/container';
   tags = ['基本组件'];
   order = 3;
   icon = 'fa fa-square-o';

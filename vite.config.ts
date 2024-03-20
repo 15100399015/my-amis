@@ -3,27 +3,18 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import svgr from 'vite-plugin-svgr';
 import monacoEditorPlugin from 'vite-plugin-monaco-editor';
-import replace from '@rollup/plugin-replace';
 import fis3 from './scripts/fis3plugin';
-import markdown from './scripts/markdownPlugin';
-import mockApi from './scripts/mockApiPlugin';
-import transformMobileHtml from './scripts/transformMobileHtml';
-//@ts-ignore
-import i18nPlugin from 'plugin-react-i18n';
-import i18nConfig from './i18nConfig';
-
-var I18N = process.env.I18N;
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      input: path.join(__dirname, './packages/amis-editor/index.html')
+    },
+    outDir: 'output' // 输出目录设置为 'output'
+  },
   plugins: [
-    I18N && i18nPlugin(i18nConfig),
-
     fis3(),
-    markdown(),
-    mockApi(),
-    transformMobileHtml(),
-
     react({
       babel: {
         parserOpts: {
@@ -41,11 +32,7 @@ export default defineConfig({
         dimensions: false
       }
     }),
-    monacoEditorPlugin({}),
-    replace({
-      __editor_i18n: !!I18N,
-      preventAssignment: true
-    })
+    monacoEditorPlugin({})
   ].filter(n => n),
   optimizeDeps: {
     include: ['amis-formula/lib/doc'],

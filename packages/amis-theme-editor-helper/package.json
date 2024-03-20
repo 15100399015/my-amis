@@ -8,10 +8,7 @@
   "scripts": {
     "test": "echo \"Warnings: no test specified\"",
     "build": "npm run clean-dist && NODE_ENV=production rollup -c ",
-    "clean-dist": "rimraf lib/** esm/**",
-    "i18n:update": "npx i18n update --config=./i18nConfig.js",
-    "i18n:translate": "npx i18n translate --config=./i18nConfig.js --l=en-US",
-    "i18n:merge": "npx i18n merge --config=./i18nConfig.js --l=en-US"
+    "clean-dist": "rimraf lib/** esm/**"
   },
   "keywords": [
     "amis",
@@ -67,7 +64,6 @@
     "amis": "*",
     "amis-core": "*",
     "amis-ui": "*",
-    "i18n-runtime": "*",
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6"
   }

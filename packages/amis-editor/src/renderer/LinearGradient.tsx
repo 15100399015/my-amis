@@ -10,10 +10,10 @@ export default class LinearGradientComponent<T> extends React.Component<
   static defaultProps = {};
 
   render() {
-    const {style, render, body} = this.props;
+    const {style, render, body, gradient} = this.props;
 
     return (
-      <CustomLinearGradient style={style}>
+      <CustomLinearGradient style={style} gradient={gradient}>
         {render('body', body)}
       </CustomLinearGradient>
     );

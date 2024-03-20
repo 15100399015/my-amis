@@ -11,13 +11,10 @@ export class BaseViewPlugin extends LayoutBasePlugin {
   static id = 'BaseViewPlugin';
   // 关联渲染器名字
   rendererName = 'base-view';
-  $schema = '/schemas/ContainerSchema.json';
-
   // 组件名称
   name = '容器';
   isBaseComponent = true;
   description = '一个简单的View组件。';
-  docLink = '/amis/zh-CN/components/container';
   tags = ['基本组件'];
   order = 1;
   icon = 'fa fa-square-o';

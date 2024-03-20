@@ -46,7 +46,6 @@ import {
   SubRendererPluginAction
 } from 'amis-editor-core';
 export * from './helper';
-import {i18n as _i18n} from 'i18n-runtime';
 import type {VariableItem} from 'amis-ui/lib/components/formula/Editor';
 import {reaction} from 'mobx';
 import {updateComponentContext} from 'amis-editor-core';
@@ -1281,7 +1280,7 @@ export class EventControl extends React.Component<
           ) : (
             <div className="ae-event-control-placeholder">
               {/* 翻译未生效，临时方案 */}
-              {_i18n('快去添加事件，让你的产品动起来吧')}
+              快去添加事件，让你的产品动起来吧
             </div>
           )}
         </ul>

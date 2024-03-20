@@ -47,3 +47,4 @@ import './Text';
 import './Image';
 import './ImageBackground';
 import './LinearGradient';
+import './TouchableView';

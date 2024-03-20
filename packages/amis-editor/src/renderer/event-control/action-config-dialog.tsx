@@ -16,7 +16,6 @@ import ActionConfigPanel from './action-config-panel';
 import {BASE_ACTION_PROPS} from './comp-action-select';
 import {findActionNode} from './helper';
 import {PlainObject, SchemaNode, Option} from 'amis-core';
-import {i18n as _i18n} from 'i18n-runtime';
 
 interface ActionDialogProp {
   show: boolean;
@@ -181,7 +180,7 @@ export default class ActionDialog extends React.Component<ActionDialogProp> {
     return commonUseActions.map((action: Option) => {
       return {
         type: 'tag',
-        label: _i18n(action.label as string),
+        label: action.label,
         displayMode: 'rounded',
         color: 'active',
         style: {

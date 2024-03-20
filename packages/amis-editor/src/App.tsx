@@ -1,7 +1,12 @@
 import * as React from 'react';
 import {AlertComponent, ToastComponent, ContextMenu} from 'amis';
-// @ts-ignore
 import AMisSchemaEditor from './Editor';
+
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/css/v4-shims.css';
+
+import './style.scss';
+
 export default class App extends React.PureComponent {
   render() {
     return (

@@ -7,10 +7,13 @@
     "packages/amis",
     "packages/amis-editor-core",
     "packages/amis-editor",
-    "packages/amis-theme-editor-helper"
+    "packages/amis-theme-editor-helper",
+    "packages/react-native-components",
+    "packages/app-platform-server"
   ],
   "scripts": {
     "start": "vite",
+    "vite:start": "vite build",
     "build": "npm run build --workspaces",
     "build-esm": "npm run build-esm --workspaces",
     "test": "npm test --workspaces",
@@ -60,7 +63,6 @@
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
-    "amis-publish": "^1.0.1",
     "copy-to-clipboard": "3.3.1",
     "echarts": "5.4.0",
     "express": "^4.18.2",

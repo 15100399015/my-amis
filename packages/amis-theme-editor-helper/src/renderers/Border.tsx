@@ -11,7 +11,6 @@ import cloneDeep from 'lodash/cloneDeep';
 import {Select} from 'amis-ui';
 import ColorPicker from './ColorPicker';
 import ThemeSelect from './ThemeSelect';
-import {i18n as _i18n} from 'i18n-runtime';
 import {
   getValueByPath,
   getInheritValue,
@@ -293,7 +292,7 @@ function BoxBorder(props: BorderProps & FormControlProps) {
                       className="Theme-Border-style-line"
                       style={{borderStyle: item.realValue}}
                     ></div>
-                    <span>{_i18n(item.label)}</span>
+                    <span>{item.label}</span>
                   </div>
                 );
               }}

@@ -30,9 +30,6 @@
     "build": "npm run clean-dist && NODE_ENV=production rollup -c",
     "build-esm": "npm run clean-dist && NODE_ENV=production rollup -c rollup.esm.config.js",
     "clean-dist": "rimraf lib/* esm/*",
-    "i18n:update": "npx i18n update --config=./i18nConfig.js",
-    "i18n:translate": "npx i18n translate --config=./i18nConfig.js --l=en-US",
-    "i18n:merge": "npx i18n merge --config=./i18nConfig.js --l=en-US",
     "format": "prettier --write \"{src,scss}/**/**/*.{js,jsx,ts,tsx,vue,scss,json}\""
   },
   "keywords": [
@@ -117,7 +114,6 @@
     "amis-formula": "*",
     "amis-theme-editor-helper": "*",
     "amis-ui": "*",
-    "i18n-runtime": "*",
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6"
   }

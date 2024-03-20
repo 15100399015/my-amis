@@ -16,7 +16,6 @@ import {
 import path from 'path';
 import svgr from '@svgr/rollup';
 import fs from 'fs';
-import i18nPlugin from 'plugin-react-i18n';
 import postcssImport from 'postcss-import';
 import minify from 'postcss-minify';
 import autoprefixer from 'autoprefixer';
@@ -24,7 +23,6 @@ import {terser} from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import replace from '@rollup/plugin-replace';
 const cssUrl = require('postcss-url');
-const i18nConfig = require('./i18nConfig');
 
 const settings = {
   globals: {}
@@ -134,7 +132,6 @@ function getPlugins(format = 'esm') {
   };
 
   return [
-    i18nPlugin(i18nConfig),
     typescript(typeScriptOptions),
     svgr({
       svgProps: {

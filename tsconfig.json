@@ -31,6 +31,9 @@
       "amis-core": [
         "./packages/amis-core/src/index.tsx"
       ],
+      "react-native-components": [
+        "./packages/react-native-components/src/index.tsx"
+      ],
       "amis-formula": [
         "./packages/amis-formula/src/index.ts"
       ],
@@ -72,7 +75,5 @@
     "scripts/markdownPlugin.ts",
     "scripts/mockApiPlugin.ts",
     "packages/amis-ui/src/custom.d.ts",
-    "examples/polyfills/cloest.js",
-    "examples/polyfills/classList.js"
   ]
 }

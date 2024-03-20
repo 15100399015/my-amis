@@ -10,7 +10,6 @@
     "build-esm": "npm run clean-dist && NODE_ENV=production rollup -c rollup.esm.config.js",
     "dev": "rollup -c -w",
     "test": "jest",
-    "gen-doc": "ts-node ./scripts/genDoc.ts",
     "update-snapshot": "jest --updateSnapshot",
     "coverage": "jest --coverage",
     "clean-dist": "rimraf lib/** esm/**"

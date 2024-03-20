@@ -239,53 +239,6 @@ registerValidator(
       }
     ]
   },
-  // {
-  //   label: '最大个数',
-  //   name: 'maxLength',
-  //   group: ValidationGroup.Pattern,
-  //   message: '文件个数不可超过 \\$1 个',
-  //   tag: {
-  //     [ValidatorTag.File]: true
-  //   },
-  //   schema: [
-  //     {
-  //       type: 'input-number',
-  //       name: 'value',
-  //       label: '文件数'
-  //     }
-  //   ]
-  // },
-  // {
-  //   label: '最小个数',
-  //   name: 'minLength',
-  //   group: ValidationGroup.Pattern,
-  //   message: '文件个数不可少于 \\$1 个',
-  //   tag: {
-  //     [ValidatorTag.File]: true
-  //   },
-  //   schema: [
-  //     {
-  //       type: 'input-number',
-  //       name: 'value',
-  //       label: '文件数'
-  //     }
-  //   ]
-  // },
-  // {
-  //   label: '最大体积',
-  //   group: ValidationGroup.Pattern,
-  //   name: 'maxSize',
-  //   message: '文件体积不可超过 \\$1 Byte',
-  //   tag: {
-  //     [ValidatorTag.File]: true
-  //   },
-  //   schema: [
-  //     {
-  //       type: 'input-number',
-  //       label: '体积(Byte)'
-  //     }
-  //   ]
-  // },
   {
     label: '最小长度',
     name: 'minLength',

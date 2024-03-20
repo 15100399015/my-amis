@@ -1,4 +1,3 @@
-import './locale/index';
 import './style/index.scss';
 export * from './helper/ColorGenerator';
 export * from './helper/ParseThemeData';
