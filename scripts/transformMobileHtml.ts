@@ -9,7 +9,7 @@ import type {Plugin} from 'vite';
  */
 export default function transformMobileHtml(options: {} = {}): Plugin {
   return {
-    name: 'amis-transform-mobile-html',
+    name: 'mdes-transform-mobile-html',
     enforce: 'pre',
     apply: 'serve',
 
@@ -19,12 +19,12 @@ export default function transformMobileHtml(options: {} = {}): Plugin {
         file.path === '/examples/index.html'
       ) {
         html = html.replace(/href=('|")(.*?)\1/g, (_, quote, value) => {
-          if (/^amis\/lib\/themes\/(.*)\.css$/.test(value)) {
-            return `href=${quote}../../packages/amis-ui/scss/themes/${RegExp.$1}.scss${quote}`;
-          } else if (/^amis\/lib\/helper\.css$/.test(value)) {
-            return `href=${quote}../../packages/amis-ui/scss/helper.scss${quote}`;
+          if (/^mdes\/lib\/themes\/(.*)\.css$/.test(value)) {
+            return `href=${quote}../../packages/mdes-ui/scss/themes/${RegExp.$1}.scss${quote}`;
+          } else if (/^mdes\/lib\/helper\.css$/.test(value)) {
+            return `href=${quote}../../packages/mdes-ui/scss/helper.scss${quote}`;
           } else if (
-            /^(?:amis|amis\-core|amis\-formula|amis\-ui|office\-viewer)/.test(
+            /^(?:mdes|mdes\-core|mdes\-formula|mdes\-ui|office\-viewer)/.test(
               value
             )
           ) {
@@ -46,7 +46,7 @@ export default function transformMobileHtml(options: {} = {}): Plugin {
         }
 
         html = html.replace(
-          "amis.require(['./mobile.jsx'], function (app)",
+          "mdes.require(['./mobile.jsx'], function (app)",
           "import('./mobile.jsx').then(function (app)"
         );
       }

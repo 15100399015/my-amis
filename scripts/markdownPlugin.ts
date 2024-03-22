@@ -179,18 +179,18 @@ function markdown2js(content: string, file: string) {
 
           placeholder[
             index
-          ] = `<!--amis-preview-start--><div class="amis-doc"><div class="preview">${code}</div><pre><code class="lang-html">${prism.highlight(
+          ] = `<!--mdes-preview-start--><div class="mdes-doc"><div class="preview">${code}</div><pre><code class="lang-html">${prism.highlight(
             code
               .replace(/"data:(\w+\/\w+);.*?"/g, '"data:$1; ..."')
               .replace(/<svg([^>]*)>[\s\S]*?<\/svg>/g, '<svg$1>...</svg>')
               .replace(/class="([^"]*?)\.\.\.([^"]*?)"/g, 'class="$1..."'),
             prism.languages[lang],
             lang
-          )}</code></pre></div><!--amis-preview-end-->`;
+          )}</code></pre></div><!--mdes-preview-end-->`;
         } else {
           placeholder[
             index
-          ] = `<!--amis-preview-start--><div class="amis-preview" style="min-height: ${setting.height}px"><script type="text/schema" ${attr}>${code}</script></div><!--amis-preview-end-->`;
+          ] = `<!--mdes-preview-start--><div class="mdes-preview" style="min-height: ${setting.height}px"><script type="text/schema" ${attr}>${code}</script></div><!--mdes-preview-end-->`;
         }
 
         return `[[${index++}]]`;
@@ -204,11 +204,11 @@ function markdown2js(content: string, file: string) {
     });
 
   // content = global.fis ? fis.compile.partial(content, file, 'html') : content;
-  // + `\n\n<div class="m-t-lg b-l b-info b-3x wrapper bg-light dk">文档内容有误？欢迎大家一起来编写，文档地址：<i class="fa fa-github"></i><a href="https://github.com/baidu/amis/tree/master${file.subpath}">${file.subpath}</a>。</div>`;
+  // + `\n\n<div class="m-t-lg b-l b-info b-3x wrapper bg-light dk">文档内容有误？欢迎大家一起来编写，文档地址：<i class="fa fa-github"></i><a href="https://github.com/baidu/mdes/tree/master${file.subpath}">${file.subpath}</a>。</div>`;
   info.html =
     '<div class="markdown-body">' +
     content.replace(
-      /<\!\-\-amis\-preview\-(start|end)\-\-\>/g,
+      /<\!\-\-mdes\-preview\-(start|end)\-\-\>/g,
       function (_, type) {
         return type === 'start' ? '</div>' : '<div class="markdown-body">';
       }

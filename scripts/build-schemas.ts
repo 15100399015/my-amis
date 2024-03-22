@@ -25,11 +25,11 @@ import {IntersectionNodeParser as MyIntersectionNodeParser} from './NodeParser/I
  * 程序主入口
  */
 async function main() {
-  const dir = path.join(__dirname, '../packages/amis/src');
-  const outDir = path.join(__dirname, '../packages/amis/');
+  const dir = path.join(__dirname, '../packages/mdes/src');
+  const outDir = path.join(__dirname, '../packages/mdes/');
   const tsConfig = path.join(
     __dirname,
-    '../packages/amis/tsconfig-for-declaration.json'
+    '../packages/mdes/tsconfig-for-declaration.json'
   );
 
   const config = {

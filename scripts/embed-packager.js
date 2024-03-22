@@ -31,7 +31,7 @@ function prefixCss(code, prefix) {
       );
     else if (
       sel.match(
-        /^(?:\.fr-|\.fa|\.tox|\.AMISDebug|\.monaco-|\.vs-dark|\.hc-black|\.vs\b|\.cursor-|::|\.context-view|\.menubar|\.fullscreen|\.colorpicker-)/
+        /^(?:\.fr-|\.fa|\.tox|\.MDESDebug|\.monaco-|\.vs-dark|\.hc-black|\.vs\b|\.cursor-|::|\.context-view|\.menubar|\.fullscreen|\.colorpicker-)/
       )
     )
       return sel;
@@ -132,7 +132,7 @@ module.exports = function (ret, pack, settings, opt) {
     } catch (e) {
         d = (/((?:https?|file):.*?)\\n/.test(e.stack) && RegExp.$1).replace(/\\/[^\\/]*$/, '');
     }
-    amis.host = d;
+    mdes.host = d;
     ${contents.replace(
       /\"url\"\s*\:\s*('|")(\.\/.*?)\1/g,
       function (_, quote, value) {
@@ -193,7 +193,7 @@ module.exports = function (ret, pack, settings, opt) {
   jsFile.setContent(jsContents);
   ret.pkg[jsFile.subpath] = jsFile;
 
-  // cssContents = prefixCss(cssContents, '.amis-scope');
+  // cssContents = prefixCss(cssContents, '.mdes-scope');
   // let cssFile = fis.file(root, 'sdk.css');
   // cssFile.setContent(cssContents);
   // ret.pkg[cssFile.subpath] = cssFile;
@@ -207,7 +207,7 @@ module.exports = function (ret, pack, settings, opt) {
       .map(item => item.content)
       .join('\n');
 
-    contents = prefixCss(contents, '.amis-scope');
+    contents = prefixCss(contents, '.mdes-scope');
     let cssFile = fis.file(root, (theme === 'cxd' ? 'sdk' : theme) + '.css');
     cssFile.setContent(contents);
     ret.pkg[cssFile.subpath] = cssFile;

@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "rootDir": "./",
+    "typeRoots": [
+      "../../types",
+      "./node_modules/@types",
+      "../../node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../mdes"
+    },
+    {
+      "path": "../mdes-editor-core"
+    },
+    {
+      "path": "../mdes-theme-editor-helper"
+    },
+    {
+      "path": "../react-native-components"
+    }
+  ]
+}

@@ -28,29 +28,29 @@
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
-      "amis-core": [
-        "./packages/amis-core/src/index.tsx"
+      "mdes-core": [
+        "./packages/mdes-core/src/index.tsx"
       ],
       "react-native-components": [
         "./packages/react-native-components/src/index.tsx"
       ],
-      "amis-formula": [
-        "./packages/amis-formula/src/index.ts"
+      "mdes-formula": [
+        "./packages/mdes-formula/src/index.ts"
       ],
-      "amis-ui": [
-        "./packages/amis-ui/src/index.tsx"
+      "mdes-ui": [
+        "./packages/mdes-ui/src/index.tsx"
       ],
-      "amis": [
-        "./packages/amis/src/index.tsx"
+      "mdes": [
+        "./packages/mdes/src/index.tsx"
       ],
-      "amis-editor-core": [
-        "./packages/amis-editor-core/src/index.ts"
+      "mdes-editor-core": [
+        "./packages/mdes-editor-core/src/index.ts"
       ],
-      "amis-editor": [
-        "./packages/amis-editor/src/index.tsx"
+      "mdes-editor": [
+        "./packages/mdes-editor/src/index.tsx"
       ],
-      "amis-theme-editor-helper": [
-        "./packages/amis-theme-editor-helper/src/index.ts"
+      "mdes-theme-editor-helper": [
+        "./packages/mdes-theme-editor-helper/src/index.ts"
       ]
     }
   },
@@ -74,6 +74,6 @@
     "scripts/fis3plugin.ts",
     "scripts/markdownPlugin.ts",
     "scripts/mockApiPlugin.ts",
-    "packages/amis-ui/src/custom.d.ts",
+    "packages/mdes-ui/src/custom.d.ts",
   ]
 }

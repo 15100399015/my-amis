@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "rootDir": "./",
+    "experimentalDecorators": true,
+    "typeRoots": [
+      "../../types",
+      "./node_modules/@types",
+      "../../node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "../mdes-ui/src/custom.d.ts"
+  ],
+  "references": [
+    {
+      "path": "../mdes-core"
+    },
+    {
+      "path": "../mdes-ui"
+    },
+  ]
+}

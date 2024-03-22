@@ -5,6 +5,9 @@ import svgr from 'vite-plugin-svgr';
 import monacoEditorPlugin from 'vite-plugin-monaco-editor';
 import fis3 from './scripts/fis3plugin';
 
+const resolve = (p: string) => {
+  return path.resolve(__dirname, p);
+};
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -28,13 +31,7 @@ export default defineConfig({
     }),
     monacoEditorPlugin({})
   ].filter(n => n),
-  optimizeDeps: {
-    include: ['amis-formula/lib/doc'],
-    exclude: ['amis-core', 'amis-formula', 'amis', 'amis-ui'],
-    esbuildOptions: {
-      target: 'esnext'
-    }
-  },
+
   server: {
     host: '0.0.0.0',
     port: 8888
@@ -55,57 +52,51 @@ export default defineConfig({
       },
       {
         find: 'react-native-components',
-        replacement: path.resolve(
-          __dirname,
-          './packages/react-native-components/src'
-        )
+        replacement: resolve('./packages/react-native-components/src')
       },
       {
-        find: 'amis-formula/lib',
-        replacement: path.resolve(__dirname, './packages/amis-formula/src')
+        find: 'mdes-formula/lib',
+        replacement: resolve('./packages/mdes-formula/src')
       },
       {
-        find: 'amis-formula',
-        replacement: path.resolve(__dirname, './packages/amis-formula/src')
+        find: 'mdes-formula',
+        replacement: resolve('./packages/mdes-formula/src')
       },
       {
-        find: 'amis-ui/lib',
-        replacement: path.resolve(__dirname, './packages/amis-ui/src')
+        find: 'mdes-ui/lib',
+        replacement: resolve('./packages/mdes-ui/src')
       },
       {
-        find: 'amis-ui',
-        replacement: path.resolve(__dirname, './packages/amis-ui/src')
+        find: 'mdes-ui',
+        replacement: resolve('./packages/mdes-ui/src')
       },
       {
-        find: 'amis-core',
-        replacement: path.resolve(__dirname, './packages/amis-core/src')
+        find: 'mdes-core',
+        replacement: resolve('./packages/mdes-core/src')
       },
       {
-        find: 'amis/lib',
-        replacement: path.resolve(__dirname, './packages/amis/src')
+        find: 'mdes/lib',
+        replacement: resolve('./packages/mdes/src')
       },
       {
-        find: 'amis/schema.json',
-        replacement: path.resolve(__dirname, './packages/amis/schema.json')
+        find: 'mdes/schema.json',
+        replacement: resolve('./packages/mdes/schema.json')
       },
       {
-        find: 'amis',
-        replacement: path.resolve(__dirname, './packages/amis/src')
+        find: 'mdes',
+        replacement: resolve('./packages/mdes/src')
       },
       {
-        find: 'amis-editor',
-        replacement: path.resolve(__dirname, './packages/amis-editor/src')
+        find: 'mdes-editor',
+        replacement: resolve('./packages/mdes-editor/src')
       },
       {
-        find: 'amis-editor-core',
-        replacement: path.resolve(__dirname, './packages/amis-editor-core/src')
+        find: 'mdes-editor-core',
+        replacement: resolve('./packages/mdes-editor-core/src')
       },
       {
-        find: 'amis-theme-editor-helper',
-        replacement: path.resolve(
-          __dirname,
-          './packages/amis-theme-editor-helper/src'
-        )
+        find: 'mdes-theme-editor-helper',
+        replacement: resolve('./packages/mdes-theme-editor-helper/src')
       }
     ]
   }

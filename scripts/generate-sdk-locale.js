@@ -9,7 +9,7 @@ try {
   console.log(
     localeFile
       .replace(`import {register} from '../locale';`, '')
-      .replace('register(', `amisRequire('amis').registerLocale(`)
+      .replace('register(', `mdesRequire('mdes').registerLocale(`)
   );
 } catch (err) {
   console.error(err);

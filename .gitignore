@@ -21,7 +21,7 @@ node_modules
 /gh-pages
 /.vscode/*
 /output
-/toolkit/amis-renderer
+/toolkit/mdes-renderer
 /toolkit/output
 /coverage
 /schema.json

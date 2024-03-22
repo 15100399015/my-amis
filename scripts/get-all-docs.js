@@ -10,7 +10,7 @@ const docs = path.resolve(__dirname, '..', 'docs');
 
 const examples = path.resolve(__dirname, '..', 'examples');
 
-const outputFile = 'amis_docs.txt';
+const outputFile = 'mdes_docs.txt';
 
 glob(docs + '/**/*.md', {}, (err, files) => {
   for (const file of files) {
