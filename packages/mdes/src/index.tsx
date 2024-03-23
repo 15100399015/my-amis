@@ -24,8 +24,6 @@ import './renderers/Calendar';
 import './renderers/Collapse';
 import './renderers/CollapseGroup';
 import './renderers/Color';
-import './renderers/CRUD';
-import './renderers/CRUD2';
 import './renderers/Pagination';
 import './renderers/Cards';
 import './renderers/Card';
@@ -120,14 +118,11 @@ import './renderers/Status';
 import './renderers/Json';
 import './renderers/Link';
 import './renderers/Wizard';
-import './renderers/Chart';
 import './renderers/Container';
 import './renderers/SwitchContainer';
 import './renderers/SearchBox';
 import './renderers/Service';
 import './renderers/SparkLine';
-import './renderers/Video';
-import './renderers/Audio';
 import './renderers/Nav';
 import './renderers/Number';
 import './renderers/Tasks';
@@ -140,7 +135,6 @@ import './renderers/Icon';
 import './renderers/Carousel';
 import './renderers/AnchorNav';
 import './renderers/Steps';
-import './renderers/Timeline';
 import './renderers/Markdown';
 import './renderers/TableView';
 import './renderers/Code';
@@ -153,7 +147,6 @@ import './renderers/Words';
 import './renderers/Password';
 import './renderers/DateRange';
 import './renderers/MultilineText';
-import './renderers/PdfViewer';
 import './renderers/MDES';
 
 import './compat';
@@ -168,8 +161,6 @@ import type {
 } from './Schema';
 import type {TableViewSchema, TrObject} from './renderers/TableView';
 import type {ActionSchema, ButtonSchema} from './renderers/Action';
-import type {CRUDCommonSchema} from './renderers/CRUD';
-import type {CRUD2Schema} from './renderers/CRUD2';
 import type {TabsSchema} from './renderers/Tabs';
 import {availableLanguages as EditorAvailableLanguages} from './renderers/Form/Editor';
 import type {Action} from './types';
@@ -185,9 +176,7 @@ export {
   TableViewSchema,
   TrObject,
   ActionSchema,
-  CRUDCommonSchema,
   ButtonSchema,
-  CRUD2Schema,
   TabsSchema,
   SchemaExpression,
   Action,

@@ -18,7 +18,7 @@ interface CSSRule {
 /**
  * mdes Page 渲染器。详情请见：https://aisuda.bce.baidu.com/mdes/zh-CN/components/page
  */
-export interface PageSchema extends BaseSchema, SpinnerExtraProps {
+export interface PageSchema extends BaseSchema {
   /**
    * 指定为 page 渲染器。
    */
@@ -32,11 +32,6 @@ export interface PageSchema extends BaseSchema, SpinnerExtraProps {
    * 内容区域
    */
   body?: SchemaCollection;
-
-  /**
-   * 自定义页面级别样式表
-   */
-  css?: CSSRule;
 
   name?: SchemaName;
 
@@ -70,7 +65,6 @@ export default class Page extends React.Component<PageProps> {
   render() {
     const {
       className,
-      store,
       body,
       render,
       classnames: cx,
@@ -78,10 +72,6 @@ export default class Page extends React.Component<PageProps> {
       translate: __,
       id
     } = this.props;
-
-    const subProps = {
-      pageLoading: store.loading
-    };
 
     return (
       <div
@@ -117,7 +107,7 @@ export default class Page extends React.Component<PageProps> {
                 })
               )}
             >
-              {render('body', body || '', subProps)}
+              {render('body', body || '')}
             </div>
           </div>
         </div>
@@ -128,7 +118,6 @@ export default class Page extends React.Component<PageProps> {
 
 @Renderer({
   type: 'page',
-  storeType: ServiceStore.name,
   isolateScope: true
 })
 export class PageRenderer extends Page {

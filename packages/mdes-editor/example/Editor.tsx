@@ -1,16 +1,10 @@
 /* eslint-disable */
 import * as React from 'react';
 import {Portal} from 'react-overlays';
-import {cxdData} from 'mdes-theme-editor-helper';
-import {setThemeConfig, Editor, ShortcutKey} from 'mdes-editor-core';
-import {Icon} from './icons/index';
 import 'mdes';
 import 'mdes-theme-editor-helper';
-import './component/BaseControl';
-import './builder/index';
-import './plugin/index';
-import './renderer/index';
-import './tpl/index';
+import {cxdData} from 'mdes-theme-editor-helper';
+import {Editor, ShortcutKey, setThemeConfig, Icon} from '../src/index';
 
 setThemeConfig(cxdData);
 
@@ -124,7 +118,7 @@ const EditorType = {
   FORM: 'form'
 };
 
-export default class AMisSchemaEditor extends React.Component<any, any> {
+export default class MDesSchemaEditor extends React.Component<any, any> {
   state: any = {
     preview: localStorage.getItem('editting_preview') ? true : false,
     type: localStorage.getItem('editting_preview_type') || EditorType.EDITOR,

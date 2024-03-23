@@ -4,21 +4,17 @@ import {TplSchema} from './renderers/Tpl';
 import {RemarkSchema, SchemaRemark} from './renderers/Remark';
 import {ActionSchema} from './renderers/Action';
 import {AlertSchema} from './renderers/Alert';
-import {AudioSchema} from './renderers/Audio';
 import {ButtonGroupSchema} from './renderers/ButtonGroup';
 import {ButtonToolbarSchema} from './renderers/Form/ButtonToolbar';
 import {CardSchema} from './renderers/Card';
 import {CardsSchema} from './renderers/Cards';
 import {CalendarSchema} from './renderers/Calendar';
 import {CarouselSchema} from './renderers/Carousel';
-import {ChartSchema} from './renderers/Chart';
 import {CollapseSchema} from './renderers/Collapse';
 import {CollapseGroupSchema} from './renderers/CollapseGroup';
 import {ColorSchema} from './renderers/Color';
 import {ContainerSchema} from './renderers/Container';
 import {SwitchContainerSchema} from './renderers/SwitchContainer';
-import {CRUDSchema} from './renderers/CRUD';
-import {CRUD2Schema} from './renderers/CRUD2';
 import {DateSchema} from './renderers/Date';
 import {DividerSchema} from './renderers/Divider';
 import {DropdownButtonSchema} from './renderers/DropDownButton';
@@ -46,7 +42,6 @@ import {TabsSchema} from './renderers/Tabs';
 import {PortletSchema} from './renderers/Portlet';
 import {TasksSchema} from './renderers/Tasks';
 import {VBoxSchema} from './renderers/VBox';
-import {VideoSchema} from './renderers/Video';
 import {WizardSchema} from './renderers/Wizard';
 import {WrapperSchema} from './renderers/Wrapper';
 import {TableSchema} from './renderers/Table';
@@ -61,7 +56,6 @@ import {AnchorNavSchema} from './renderers/AnchorNav';
 import {AvatarSchema} from './renderers/Avatar';
 import {StepsSchema} from './renderers/Steps';
 import {SpinnerSchema} from './renderers/Spinner';
-import {TimelineSchema} from './renderers/Timeline';
 import {ArrayControlSchema} from './renderers/Form/InputArray';
 import {ButtonGroupControlSchema} from './renderers/Form/ButtonGroupSelect';
 import {ChainedSelectControlSchema} from './renderers/Form/ChainedSelect';
@@ -150,13 +144,10 @@ export type SchemaType =
   | 'card2'
   | 'cards'
   | 'carousel'
-  | 'chart'
   | 'calendar'
   | 'collapse'
   | 'collapse-group'
   | 'color'
-  | 'crud'
-  | 'crud2'
   | 'custom'
   | 'date'
   | 'static-date' // 这个几个跟表单项同名，再form下面用必须带前缀 static-
@@ -217,13 +208,11 @@ export type SchemaType =
   | 'tpl'
   | 'tasks'
   | 'vbox'
-  | 'video'
   | 'wizard'
   | 'wrapper'
   | 'web-component'
   | 'anchor-nav'
   | 'steps'
-  | 'timeline'
   | 'control'
   | 'input-array'
   | 'button'
@@ -253,7 +242,6 @@ export type SchemaType =
   | 'input-excel'
   | 'input-formula'
   | 'diff-editor'
-  | 'pdf-viewer'
   | 'input-signature'
 
   // editor 系列
@@ -371,7 +359,6 @@ export type SchemaObject =
   | RemarkSchema
   | ActionSchema
   | AlertSchema
-  | AudioSchema
   | AvatarSchema
   | ButtonGroupSchema
   | ButtonToolbarSchema
@@ -379,14 +366,11 @@ export type SchemaObject =
   | CardSchema
   | CardsSchema
   | CarouselSchema
-  | ChartSchema
   | CollapseSchema
   | CollapseGroupSchema
   | ColorSchema
   | ContainerSchema
   | SwitchContainerSchema
-  | CRUDSchema
-  | CRUD2Schema
   | DateSchema
   | DialogSchema
   | DividerSchema
@@ -422,7 +406,6 @@ export type SchemaObject =
   | TabsSchema
   | TasksSchema
   | VBoxSchema
-  | VideoSchema
   | WizardSchema
   | WrapperSchema
   | TooltipWrapperSchema
@@ -430,7 +413,6 @@ export type SchemaObject =
   | AnchorNavSchema
   | StepsSchema
   | PortletSchema
-  | TimelineSchema
 
   // 表单项
   | FormControlSchema

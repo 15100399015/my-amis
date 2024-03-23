@@ -14,8 +14,6 @@ import {ComboStore} from './combo';
 import type {IComboStore} from './combo';
 import {FormStore} from './form';
 import type {IFormStore} from './form';
-import {CRUDStore} from './crud';
-import type {ICRUDStore} from './crud';
 import {TableStore} from './table';
 import type {IColumn, IRow, ITableStore} from './table';
 import {TableStore2} from './table2';
@@ -45,7 +43,6 @@ const allowedStoreList = [
   ServiceStore,
   FormStore,
   ComboStore,
-  CRUDStore,
   TableStore,
   TableStore2,
   ListStore,
@@ -122,8 +119,6 @@ export {
   IFormStore,
   ComboStore,
   IComboStore,
-  CRUDStore,
-  ICRUDStore,
   TableStore,
   IColumn,
   IRow,

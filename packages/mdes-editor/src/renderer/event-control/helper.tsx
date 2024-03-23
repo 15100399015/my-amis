@@ -56,7 +56,6 @@ export const DATA_CONTAINER = [
   'drawer',
   'wizard',
   'service',
-  'crud',
   'page',
   'app',
   'chart'

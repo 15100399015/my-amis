@@ -68,7 +68,7 @@ const codeErrorWarning = debounce(e => {
   toast.warning(`代码有误，错误的地方是\n ${e.toString().split('\n')[1]}`);
 }, 3000);
 
-export interface AMisCodeEditorProps {
+export interface MDesCodeEditorProps {
   value: any;
   onChange: (value: any, diff: any) => void;
   onPaste?: () => void;
@@ -79,7 +79,7 @@ export interface AMisCodeEditorProps {
   theme?: string;
 }
 
-export default class AMisCodeEditor extends React.Component<AMisCodeEditorProps> {
+export default class MDesCodeEditor extends React.Component<MDesCodeEditorProps> {
   state = {
     wrongSchema: '',
     value: this.props.value,
@@ -93,7 +93,7 @@ export default class AMisCodeEditor extends React.Component<AMisCodeEditorProps>
   decorations: any;
   uri = `isuda://schema/${guid()}.json`;
 
-  componentDidUpdate(prevProps: AMisCodeEditorProps) {
+  componentDidUpdate(prevProps: MDesCodeEditorProps) {
     const props = this.props;
 
     if (prevProps.$schema !== props.$schema && this.monaco) {
@@ -113,7 +113,7 @@ export default class AMisCodeEditor extends React.Component<AMisCodeEditorProps>
     }
   }
 
-  obj2str(value: any, props: AMisCodeEditorProps) {
+  obj2str(value: any, props: MDesCodeEditorProps) {
     // 隐藏公共配置
     value = filterSchemaForConfig(value);
 
@@ -186,7 +186,7 @@ export default class AMisCodeEditor extends React.Component<AMisCodeEditorProps>
     }
   );
 
-  async changeJsonOptions(props: AMisCodeEditorProps = this.props) {
+  async changeJsonOptions(props: MDesCodeEditorProps = this.props) {
     const monaco = this.monaco;
     let schemaUrl =
       props.$schemaUrl ||

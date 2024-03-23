@@ -1938,11 +1938,9 @@ export const MainStore = types
             key === 'name' &&
             value &&
             host &&
-            (host.type === 'crud' ||
-              host.type === 'form' ||
+            (host.type === 'form' ||
               host.type === 'page' ||
               host.type === 'service' ||
-              host.type === 'chart' ||
               host.type === 'wizard')
           ) {
             targetNames.push({

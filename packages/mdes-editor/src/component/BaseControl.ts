@@ -265,29 +265,6 @@ export const formItemControl: (
             panels?.status?.reverse
           )
         }
-        // ...(panels?.validation?.hidden
-        //   ? []
-        //   : [
-        //       {
-        //         ...collapseProps,
-        //         className: 'ae-ValidationControl-Panel',
-        //         header: '校验',
-        //         key: 'validation',
-        //         body: normalizeBodySchema(
-        //           [
-        //             getSchemaTpl(
-        //               'validationControl',
-        //               panels?.validation?.validationType
-        //             ),
-        //             getSchemaTpl('validateOnChange'),
-        //             getSchemaTpl('submitOnChange')
-        //           ],
-        //           panels?.validation?.body,
-        //           panels?.validation?.replace,
-        //           panels?.validation?.reverse
-        //         )
-        //       }
-        //     ])
       ];
   return [
     {

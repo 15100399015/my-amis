@@ -1,7 +1,7 @@
 import React from 'react';
 import {PanelProps} from '../../plugin';
 import {autobind} from '../../util';
-import AMisCodeEditor from './AMisCodeEditor';
+import MDesCodeEditor from './MDesCodeEditor';
 
 export default class CodeEditorPanel extends React.Component<PanelProps> {
   @autobind
@@ -18,7 +18,7 @@ export default class CodeEditorPanel extends React.Component<PanelProps> {
       <div className="ae-CodePanel">
         <div className="panel-header">源码</div>
         <div className="ae-CodePanel-content">
-          <AMisCodeEditor
+          <MDesCodeEditor
             value={store.valueWithoutHiddenProps}
             onChange={onChange}
             $schema={store.jsonSchemaUri}

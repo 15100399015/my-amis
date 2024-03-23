@@ -36,7 +36,7 @@ const external = id =>
       )
       .join('|')})`
   ).test(id);
-const input = './src/App.tsx';
+const input = './src/index.tsx';
 
 export default [
   {

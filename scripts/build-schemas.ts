@@ -9,7 +9,6 @@ import mkdirp = require('mkdirp');
 import {
   DiagnosticError,
   IntersectionTypeFormatter,
-  ObjectTypeFormatter,
   SubTypeFormatter,
   UnknownNodeError,
   UnknownTypeError,

@@ -23,7 +23,7 @@ export * from './icons/index';
 export * from './mocker';
 import {BasicEditor, RendererEditor} from './compat';
 import MiniEditor from './component/MiniEditor';
-import CodeEditor from './component/Panel/AMisCodeEditor';
+import CodeEditor from './component/Panel/MDesCodeEditor';
 import IFramePreview from './component/IFramePreview';
 import SearchPanel from './component/base/SearchPanel';
 import {VRenderer} from './component/VRenderer';

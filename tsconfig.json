@@ -28,11 +28,11 @@
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
-      "mdes-core": [
-        "./packages/mdes-core/src/index.tsx"
-      ],
       "react-native-components": [
         "./packages/react-native-components/src/index.tsx"
+      ],
+      "mdes-core": [
+        "./packages/mdes-core/src/index.tsx"
       ],
       "mdes-formula": [
         "./packages/mdes-formula/src/index.ts"
@@ -72,8 +72,6 @@
     "**/*.tsx",
     "**/*.jsx",
     "scripts/fis3plugin.ts",
-    "scripts/markdownPlugin.ts",
-    "scripts/mockApiPlugin.ts",
     "packages/mdes-ui/src/custom.d.ts",
   ]
 }

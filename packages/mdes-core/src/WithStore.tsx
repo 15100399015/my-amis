@@ -303,9 +303,7 @@ export function HocStoreFactory(renderer: {
                 ...store.data
               }),
 
-              props.updatePristineAfterStoreDataReInit === false ||
-                (store.storeType === 'FormStore' &&
-                  prevProps.store?.storeType === 'CRUDStore')
+              props.updatePristineAfterStoreDataReInit === false
             );
           }
           // nextProps.data.__super !== props.data.__super) &&

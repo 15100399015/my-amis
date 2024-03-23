@@ -8,8 +8,6 @@ import {isExpression, resolveVariableAndFilter} from 'mdes-core';
 import type {VariableItem} from 'mdes-ui';
 import {isObservable, reaction} from 'mobx';
 import DeepDiff, {Diff} from 'deep-diff';
-import assign from 'lodash/assign';
-import cloneDeep from 'lodash/cloneDeep';
 import isPlainObject from 'lodash/isPlainObject';
 import isEqual from 'lodash/isEqual';
 import isNumber from 'lodash/isNumber';
@@ -1086,8 +1084,6 @@ export function stringRegExp(keyword: string) {
 export function needDefaultWidth(elemType: string) {
   const needDefaultWidthElemType: Array<string> = [
     'divider',
-    'crud2',
-    'crud',
     'list',
     'picker',
     'table',
