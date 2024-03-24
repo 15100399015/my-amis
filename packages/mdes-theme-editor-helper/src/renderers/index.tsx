@@ -2,7 +2,6 @@ import './PaddingAndMargin';
 import './Border';
 import './Radius';
 import './ColorPicker';
-import './ColorPickerGradient';
 import './Size';
 import './Font';
 import './Shadow';

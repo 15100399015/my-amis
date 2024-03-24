@@ -376,15 +376,6 @@ setSchemaTpl('mapSourceControl', {
   name: 'source'
 });
 
-/**
- * 时间轴组件选项控件
- */
-setSchemaTpl('timelineItemControl', {
-  label: '数据',
-  model: 'normal',
-  type: 'ae-timelineItemControl'
-});
-
 setSchemaTpl('treeOptionControl', {
   label: '数据',
   mode: 'normal',

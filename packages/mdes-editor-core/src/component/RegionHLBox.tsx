@@ -5,8 +5,6 @@ import {EditorStoreType} from '../store/editor';
 import {observer} from 'mobx-react';
 import {EditorManager} from '../manager';
 import {EditorNodeType} from '../store/node';
-import {autobind} from '../util';
-import {isAlive} from 'mobx-state-tree';
 
 export const AddBTNSvg = `<svg viewBox="0 0 12 12">
 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -43,6 +41,15 @@ export default observer(function (props: HighlightBoxProps) {
   const dx = node.x - host.x;
   const dy = node.y - host.y;
 
+  const borderWidth = [
+    Math.max(0, dy),
+    Math.max(0, host.w - dx - node.w),
+    Math.max(0, host.h - dy - node.h),
+    Math.max(0, dx)
+  ];
+  const isBespread = Boolean(
+    isOnlyChildRegion && borderWidth.reduce((a, b) => a + b, 0) / 4 <= 2
+  );
   return (
     <div
       data-renderer={node.host.info.renderer.name}
@@ -52,15 +59,15 @@ export default observer(function (props: HighlightBoxProps) {
         isDragEnter ? 'is-dragenter' : '',
         !isOnlyChildRegion && isHiglightHover ? 'region-hover' : '',
         isOnlyChildRegion || isHiglight ? 'is-highlight' : '',
+        isBespread ? 'is-bespread' : '',
         dx < 87 && dy < 21 && node.x < 190 ? 'region-label-within' : ''
       )}
       style={{
         width: node.w,
         height: node.h,
-        borderWidth: `${Math.max(0, dy)}px ${Math.max(
-          0,
-          host.w - dx - node.w
-        )}px ${Math.max(0, host.h - dy - node.h)}px ${Math.max(0, dx)}px`
+        borderWidth: !isBespread
+          ? `${borderWidth[0]}px ${borderWidth[1]}px ${borderWidth[2]}px ${borderWidth[3]}px`
+          : '0px'
       }}
     >
       <div
