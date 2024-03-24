@@ -107,7 +107,7 @@ export default class Page extends React.Component<PageProps> {
                 })
               )}
             >
-              {render('body', body || '')}
+              <div>{render('body', body || '')}</div>
             </div>
           </div>
         </div>

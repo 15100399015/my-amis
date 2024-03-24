@@ -1,6 +1,5 @@
 import 'mdes';
 export * from 'mdes-editor-core';
-export * from './component/BaseControl';
 export * from './builder';
 export * from './plugin';
 export * from './icons/index';

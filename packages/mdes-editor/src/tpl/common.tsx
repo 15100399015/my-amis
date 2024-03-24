@@ -8,7 +8,6 @@ import {
 } from 'mdes-editor-core';
 import type {SchemaObject} from 'mdes';
 import flatten from 'lodash/flatten';
-import {InputComponentName} from '../component/InputComponentName';
 import {FormulaDateType} from '../renderer/FormulaControl';
 import {VariableItem} from 'mdes-ui/lib/components/formula/Editor';
 import reduce from 'lodash/reduce';
@@ -717,23 +716,6 @@ setSchemaTpl('name', {
   name: 'name',
   type: 'input-text',
   placeholder: '请输入字母或者数字'
-});
-
-setSchemaTpl('reload', {
-  name: 'reload',
-  asFormItem: true,
-  // type: 'input-text',
-  component: InputComponentName,
-  label: tipedLabel(
-    '刷新目标组件',
-    '可以指定操作完成后刷新目标组件，请填写目标组件的 <code>name</code> 属性，多个组件请用<code>,</code>隔开，如果目标组件为表单项，请先填写表单的名字，再用<code>.</code>连接表单项的名字如：<code>xxForm.xxControl</code>。另外如果刷新目标对象设置为 <code>window</code>，则会刷新整个页面。'
-  ),
-  placeholder: '请输入组件name',
-  mode: 'horizontal',
-  horizontal: {
-    left: 4,
-    justify: true
-  }
 });
 
 setSchemaTpl('className', (schema: any) => {
