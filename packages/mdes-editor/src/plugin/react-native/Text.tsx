@@ -11,6 +11,8 @@ export class BaseTextPlugin extends LayoutBasePlugin {
   static id = 'BaseTextPlugin';
   // 关联渲染器名字
   rendererName = 'base-text';
+  $schema = '/schemas/PageSchema.json';
+
   // 组件名称
   name = '文本';
   isBaseComponent = true;
@@ -28,6 +30,7 @@ export class BaseTextPlugin extends LayoutBasePlugin {
       flexDirection: 'row'
     }
   };
+
   previewSchema = {
     ...this.scaffold
   };
@@ -48,8 +51,9 @@ export class BaseTextPlugin extends LayoutBasePlugin {
       {
         title: '属性',
         body: [
-          getSchemaTpl('inputBody', {
-            name: 'content',
+          getSchemaTpl('textareaFormulaControl', {
+            mode: 'normal',
+            name: 'tpl',
             label: '内容'
           })
         ]
@@ -130,7 +134,7 @@ export class BaseTextPlugin extends LayoutBasePlugin {
         title: '外观',
         className: 'p-none',
         body: getSchemaTpl('collapseGroup', [
-          ...getSchemaTpl('style:common', ['layout'])
+          ...getSchemaTpl('style:common', [])
         ])
       }
     ]);

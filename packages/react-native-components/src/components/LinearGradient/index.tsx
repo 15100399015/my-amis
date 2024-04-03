@@ -1,10 +1,11 @@
 import React from 'react';
-import LinearGradient, {
-  LinearGradientProps
-} from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 import {useStyle, useGradient} from '../../use/styles';
+import {ViewProps} from 'react-native';
 
-interface IProps extends LinearGradientProps {}
+interface IProps extends ViewProps {
+  gradient: any;
+}
 
 export function CustomLinearGradient(props: IProps) {
   const style = useStyle(props.style);

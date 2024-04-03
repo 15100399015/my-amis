@@ -1,7 +1,6 @@
 import {
   BaseType,
   Definition,
-  IntersectionType,
   IntersectionTypeFormatter as BaseIntersectionTypeFormatter,
   ReferenceType,
   TypeFormatter

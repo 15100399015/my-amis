@@ -134,7 +134,7 @@ export class BaseLinearGradientPlugin extends LayoutBasePlugin {
         title: '外观',
         className: 'p-none',
         body: getSchemaTpl('collapseGroup', [
-          ...getSchemaTpl('style:common', ['font', 'layout'])
+          ...getSchemaTpl('style:common', ['font'])
         ])
       }
     ]);

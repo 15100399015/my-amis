@@ -10,7 +10,13 @@
     ]
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "__tests__/**/*",
+    "src/custom.d.ts"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "../mdes-core"
+    }
+  ]
 }

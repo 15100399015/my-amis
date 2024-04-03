@@ -3,7 +3,6 @@ import {Renderer} from 'mdes-core';
 import {CustomImage} from 'react-native-components';
 
 export default class ImageComponent<T> extends React.Component<any, object> {
-  static propsList: Array<string> = ['body', 'className'];
   static defaultProps = {};
 
   render() {

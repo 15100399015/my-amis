@@ -11,6 +11,8 @@ export class BaseImageBackgroundPlugin extends LayoutBasePlugin {
   static id = 'BaseImageBackgroundPlugin';
   // 关联渲染器名字
   rendererName = 'base-imagebackground';
+  $schema = '/schemas/PageSchema.json';
+
   // 组件名称
   name = '背景图容器';
   isBaseComponent = true;
@@ -135,7 +137,7 @@ export class BaseImageBackgroundPlugin extends LayoutBasePlugin {
         title: '外观',
         className: 'p-none',
         body: getSchemaTpl('collapseGroup', [
-          ...getSchemaTpl('style:common', ['font', 'layout'])
+          ...getSchemaTpl('style:common', ['font'])
         ])
       }
     ]);

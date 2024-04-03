@@ -6,7 +6,6 @@ export default class LinearGradientComponent<T> extends React.Component<
   any,
   object
 > {
-  static propsList: Array<string> = ['body', 'content'];
   static defaultProps = {};
 
   render() {

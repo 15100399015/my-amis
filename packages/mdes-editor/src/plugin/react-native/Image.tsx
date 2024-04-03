@@ -11,6 +11,8 @@ export class BaseImagePlugin extends LayoutBasePlugin {
   static id = 'BaseImagePlugin';
   // 关联渲染器名字
   rendererName = 'base-image';
+  $schema = '/schemas/PageSchema.json';
+
   // 组件名称
   name = '图片';
   isBaseComponent = true;
@@ -125,7 +127,7 @@ export class BaseImagePlugin extends LayoutBasePlugin {
         title: '外观',
         className: 'p-none',
         body: getSchemaTpl('collapseGroup', [
-          ...getSchemaTpl('style:common', ['font', 'layout'])
+          ...getSchemaTpl('style:common', ['font'])
         ])
       }
     ]);

@@ -3,8 +3,7 @@ import {
   Context,
   IntersectionNodeParser as BaseIntersectionNodeParser,
   IntersectionType,
-  NodeParser,
-  ReferenceType
+  NodeParser
 } from 'ts-json-schema-generator';
 import ts from 'typescript';
 

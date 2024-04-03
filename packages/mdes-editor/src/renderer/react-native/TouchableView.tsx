@@ -6,7 +6,6 @@ export default class TouchableViewComponent extends React.Component<
   any,
   object
 > {
-  static propsList: Array<string> = ['body'];
   static defaultProps = {};
 
   render() {

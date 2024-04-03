@@ -6,7 +6,6 @@ export default class ImageBackgroundComponent<T> extends React.Component<
   any,
   object
 > {
-  static propsList: Array<string> = ['body', 'className'];
   static defaultProps = {};
 
   render() {

@@ -3,7 +3,6 @@ import {Renderer} from 'mdes-core';
 import {CustomView} from 'react-native-components';
 
 export default class ViewComponent<T> extends React.Component<any, object> {
-  static propsList: Array<string> = ['body', 'className'];
   static defaultProps = {};
 
   render() {
@@ -13,7 +12,6 @@ export default class ViewComponent<T> extends React.Component<any, object> {
 }
 
 @Renderer({
-  type: 'base-view',
-  isolateScope: true
+  type: 'base-view'
 })
 export class ViewRenderer extends ViewComponent<{}> {}

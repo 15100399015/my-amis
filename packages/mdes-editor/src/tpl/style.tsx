@@ -1,6 +1,4 @@
 import {setSchemaTpl, getSchemaTpl, defaultValue} from 'mdes-editor-core';
-import type {SchemaCollection} from 'mdes';
-import pick from 'lodash/pick';
 import kebabCase from 'lodash/kebabCase';
 
 setSchemaTpl('style:others', (schemas: any[] = []) => ({
@@ -26,17 +24,6 @@ setSchemaTpl(
     ).map((key: string) => kebabCase(key));
 
     return [
-      {
-        header: '布局',
-        key: 'layout',
-        body: [
-          {
-            type: 'style-display',
-            label: false,
-            name: 'style'
-          }
-        ].filter(comp => !~exclude.indexOf(comp.type.replace(/^style-/i, '')))
-      },
       {
         header: '文字',
         key: 'font',
@@ -78,17 +65,6 @@ setSchemaTpl(
             type: 'style-border',
             label: false,
             name: 'style'
-          }
-        ]
-      },
-      {
-        header: '阴影',
-        key: 'box-shadow',
-        body: [
-          {
-            type: 'style-box-shadow',
-            label: false,
-            name: 'style.boxShadow'
           }
         ]
       },
