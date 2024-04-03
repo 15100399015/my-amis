@@ -8,7 +8,12 @@ export default class ViewComponent<T> extends React.Component<any, any> {
   render() {
     const {style, tpl, placeholder} = this.props;
     return (
-      <CustomText style={style} tpl={tpl} data={{}} placeholder={placeholder} />
+      <CustomText
+        style={style}
+        tpl={tpl}
+        data={{}}
+        placeholder={placeholder || '文本内容'}
+      />
     );
   }
 }

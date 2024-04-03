@@ -28,6 +28,11 @@
     "mdes-core": "^6.2.1",
     "mdes-formula": "^6.2.1"
   },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@types/react-native": "0.73.0"
+  },
   "peerDependencies": {
     "mdes-core": "*",
     "mdes-formula": "*"
