@@ -6,6 +6,7 @@ import {
   RendererPluginEvent,
   registerEditorPlugin
 } from 'mdes-editor-core';
+import {defaultLayoutStyle} from '../../utils';
 
 export class BaseTextPlugin extends LayoutBasePlugin {
   static id = 'BaseTextPlugin';
@@ -25,9 +26,7 @@ export class BaseTextPlugin extends LayoutBasePlugin {
     type: 'base-text',
     body: [],
     style: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'row'
+      ...defaultLayoutStyle
     }
   };
 
@@ -55,6 +54,11 @@ export class BaseTextPlugin extends LayoutBasePlugin {
             mode: 'normal',
             name: 'tpl',
             label: '内容'
+          }),
+          getSchemaTpl('inputBody', {
+            mode: 'vertical',
+            name: 'placeholder',
+            label: '默认值'
           })
         ]
       },

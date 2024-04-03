@@ -6,6 +6,7 @@ import {
   RendererPluginEvent,
   registerEditorPlugin
 } from 'mdes-editor-core';
+import {defaultLayoutStyle} from '../../utils';
 
 export class BaseImageBackgroundPlugin extends LayoutBasePlugin {
   static id = 'BaseImageBackgroundPlugin';
@@ -25,9 +26,9 @@ export class BaseImageBackgroundPlugin extends LayoutBasePlugin {
     type: 'base-imagebackground',
     body: [],
     style: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'row'
+      ...defaultLayoutStyle,
+      width: '100px',
+      height: '100px'
     }
   };
   previewSchema = {

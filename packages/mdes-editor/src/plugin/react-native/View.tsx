@@ -6,6 +6,7 @@ import {
   RendererPluginEvent,
   registerEditorPlugin
 } from 'mdes-editor-core';
+import {defaultLayoutStyle} from '../../utils';
 
 export class BaseViewPlugin extends LayoutBasePlugin {
   static id = 'BaseViewPlugin';
@@ -25,9 +26,7 @@ export class BaseViewPlugin extends LayoutBasePlugin {
     type: 'base-view',
     body: [],
     style: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'row'
+      ...defaultLayoutStyle
     }
   };
 

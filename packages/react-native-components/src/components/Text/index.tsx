@@ -19,6 +19,7 @@ function getContent(props: any) {
 
 interface IProps extends TextProps {
   tpl?: string;
+  placeholder?: string;
   data: any;
 }
 
@@ -30,7 +31,7 @@ export function CustomText(props: IProps) {
   }, [props.tpl, props.data]);
   return (
     <Text {...props} style={style}>
-      {String(context)}
+      {String(context) || props.placeholder}
     </Text>
   );
 }

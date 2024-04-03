@@ -6,6 +6,7 @@ import {
   RendererPluginEvent,
   registerEditorPlugin
 } from 'mdes-editor-core';
+import {defaultLayoutStyle} from '../../utils';
 
 export class BaseTouchableViewPlugin extends LayoutBasePlugin {
   static id = 'BaseTouchableViewPlugin';
@@ -23,9 +24,7 @@ export class BaseTouchableViewPlugin extends LayoutBasePlugin {
     type: 'base-touchableview',
     body: [],
     style: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'row'
+      ...defaultLayoutStyle
     }
   };
   previewSchema = {

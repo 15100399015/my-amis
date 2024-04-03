@@ -1,6 +1,7 @@
 import isNumber from 'lodash/isNumber';
 import {TextStyle, ViewStyle, ImageStyle} from 'react-native';
 type TKeySet = keyof ViewStyle | keyof TextStyle | keyof ImageStyle;
+
 const uncoilPxMap = new Set<TKeySet>([
   'width',
   'height',

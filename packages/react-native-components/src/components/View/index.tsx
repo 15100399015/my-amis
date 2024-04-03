@@ -6,6 +6,5 @@ interface IProps extends ViewProps {}
 
 export function CustomView(props: IProps) {
   const style = useStyle(props.style);
-
   return <View {...props} style={style} />;
 }

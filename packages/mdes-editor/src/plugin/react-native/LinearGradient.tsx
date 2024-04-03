@@ -6,6 +6,7 @@ import {
   RendererPluginEvent,
   registerEditorPlugin
 } from 'mdes-editor-core';
+import {defaultLayoutStyle} from '../../utils';
 
 export class BaseLinearGradientPlugin extends LayoutBasePlugin {
   static id = 'BaseLinearGradientPlugin';
@@ -23,9 +24,7 @@ export class BaseLinearGradientPlugin extends LayoutBasePlugin {
     type: 'base-lineargradient',
     body: [],
     style: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'row'
+      ...defaultLayoutStyle
     }
   };
   previewSchema = {
