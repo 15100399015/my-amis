@@ -2,9 +2,19 @@
   "name": "react-native-components",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "author": "fex",
+  "license": "Apache-2.0",
   "scripts": {
-    "build": "echo 1"
+    "build": "npm run clean-dist && NODE_ENV=production rollup -c ",
+    "build-esm": "npm run clean-dist && NODE_ENV=production rollup -c rollup.esm.config.js",
+    "dev": "rollup -c -w",
+    "test": "jest",
+    "update-snapshot": "jest --updateSnapshot",
+    "coverage": "jest --coverage",
+    "clean-dist": "rimraf lib/** esm/**"
   },
   "files": [
     "src"
@@ -37,7 +47,5 @@
     "mdes-core": "*",
     "mdes-formula": "*"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": []
 }

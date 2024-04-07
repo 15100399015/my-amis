@@ -13,7 +13,9 @@ export function CustomText(props: IProps) {
 
   // 根据 tpl 渲染内容
   const content = useMemo(() => {
-    return getContextDataByTpl(props.tpl, props.data);
+    return getContextDataByTpl(props.tpl, {
+      name: [1, 2, 3]
+    });
   }, [props.tpl, props.data]);
 
   return (

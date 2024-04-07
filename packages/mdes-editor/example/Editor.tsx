@@ -8,6 +8,9 @@ import {Editor, ShortcutKey, setThemeConfig, Icon} from '../src/index';
 
 setThemeConfig(cxdData);
 
+// @ts-ignore
+window.enableMDESDebug = true;
+
 const schema = {
   type: 'page',
   title: 'Simple Form Page',
@@ -227,6 +230,7 @@ export default class MDesSchemaEditor extends React.Component<any, any> {
         preview={preview}
         isMobile={isMobile}
         value={schema}
+        // 声明的上下文变量
         variables={variables}
         onChange={this.handleChange}
         onPreview={this.handlePreviewChange}
