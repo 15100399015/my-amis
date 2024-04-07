@@ -192,7 +192,7 @@ export function evalJS(js: string, data: object): any {
   }
 }
 
-[registerBulitin, registerLodash].forEach(fn => {
+[registerBulitin].forEach(fn => {
   if (!fn) return;
   const info = fn();
 
