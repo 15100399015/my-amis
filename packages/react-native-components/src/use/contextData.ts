@@ -1,4 +1,4 @@
-import {getPropValue, filter} from 'mdes-core';
+import {filter} from 'mdes-core';
 
 /**
  * 根据条件表达式获取context数据

@@ -1,5 +1,4 @@
 import {register as registerBulitin, getFilters} from './tpl-builtin';
-import {register as registerLodash} from './tpl-lodash';
 import {parse, evaluate} from 'mdes-formula';
 import {resolveCondition} from './resolveCondition';
 import {memoParse} from './tokenize';
@@ -70,20 +69,8 @@ export function asyncFilter(
 // 缓存一下提升性能
 const EVAL_CACHE: {[key: string]: Function} = {};
 
-let customEvalExpressionFn: (expression: string, data?: any) => boolean;
-export function setCustomEvalExpression(
-  fn: (expression: string, data?: any) => boolean
-) {
-  customEvalExpressionFn = fn;
-}
-
 // 几乎所有的 visibleOn requiredOn 都是通过这个方法判断出来结果，很粗暴也存在风险，建议自己实现。
-// 如果想自己实现，请通过 setCustomEvalExpression 来替换。
 export function evalExpression(expression: string, data?: object): boolean {
-  if (typeof customEvalExpressionFn === 'function') {
-    return customEvalExpressionFn(expression, data);
-  }
-
   if (!expression || typeof expression !== 'string') {
     return false;
   }
@@ -146,28 +133,8 @@ export async function evalExpressionWithConditionBuilder(
   return evalExpression(String(expression), data);
 }
 
-function evalFormula(expression: string, data: any) {
-  const ast = memoParse(expression, {
-    evalMode: false
-  });
-
-  return evaluate(ast, data, {
-    defaultFilter: 'raw'
-  });
-}
-
-let customEvalJsFn: (expression: string, data?: any) => any;
-export function setCustomEvalJs(fn: (expression: string, data?: any) => any) {
-  customEvalJsFn = fn;
-}
-
 // 这个主要用在 formula 里面，用来动态的改变某个值。也很粗暴，建议自己实现。
-// 如果想自己实现，请通过 setCustomEvalJs 来替换。
 export function evalJS(js: string, data: object): any {
-  if (typeof customEvalJsFn === 'function') {
-    return customEvalJsFn(js, data);
-  }
-
   /* jshint evil:true */
   try {
     if (
@@ -192,6 +159,17 @@ export function evalJS(js: string, data: object): any {
   }
 }
 
+export function evalFormula(expression: string, data: any) {
+  const ast = memoParse(expression, {
+    evalMode: false
+  });
+
+  return evaluate(ast, data, {
+    defaultFilter: 'raw'
+  });
+}
+
+// 注册模板解析器
 [registerBulitin].forEach(fn => {
   if (!fn) return;
   const info = fn();

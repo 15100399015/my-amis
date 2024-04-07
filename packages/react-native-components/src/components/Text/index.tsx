@@ -15,6 +15,7 @@ export function CustomText(props: IProps) {
   const content = useMemo(() => {
     return getContextDataByTpl(props.tpl, {name: '杨立鹏'});
   }, [props.tpl, props.data]);
+  console.log(content, props);
   return (
     <Text {...props} style={style}>
       {String(content) || props.placeholder}
