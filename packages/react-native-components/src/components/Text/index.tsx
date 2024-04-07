@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {Text, TextProps} from 'react-native';
 import {useStyle} from '../../use/styles';
-import {getContextDataByTpl} from '../../use/contextData';
+import {getContextDataByTpl} from '../../util/contextData';
 interface IProps extends TextProps {
   tpl?: string;
   placeholder?: string;
@@ -13,9 +13,9 @@ export function CustomText(props: IProps) {
 
   // 根据 tpl 渲染内容
   const content = useMemo(() => {
-    return getContextDataByTpl(props.tpl, {name: '杨立鹏'});
+    return getContextDataByTpl(props.tpl, props.data);
   }, [props.tpl, props.data]);
-  console.log(content, props);
+
   return (
     <Text {...props} style={style}>
       {String(content) || props.placeholder}

@@ -4,7 +4,7 @@ import {CustomLinearGradient} from 'react-native-components';
 
 export default class LinearGradientComponent<T> extends React.Component<
   any,
-  object
+  any
 > {
   static defaultProps = {};
 

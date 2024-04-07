@@ -2,7 +2,7 @@ import React from 'react';
 import {Renderer} from 'mdes-core';
 import {CustomView} from 'react-native-components';
 
-export default class ViewComponent<T> extends React.Component<any, object> {
+export default class ViewComponent<T> extends React.Component<any, any> {
   static defaultProps = {};
 
   render() {

@@ -4,7 +4,7 @@ import {CustomImageBackground} from 'react-native-components';
 
 export default class ImageBackgroundComponent<T> extends React.Component<
   any,
-  object
+  any
 > {
   static defaultProps = {};
 
@@ -22,4 +22,4 @@ export default class ImageBackgroundComponent<T> extends React.Component<
 @Renderer({
   type: 'base-imagebackground'
 })
-export class ImageRenderer extends ImageBackgroundComponent<{}> {}
+export class ImageBackgroundRenderer extends ImageBackgroundComponent<{}> {}

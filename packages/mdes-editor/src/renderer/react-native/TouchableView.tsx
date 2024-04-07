@@ -2,10 +2,7 @@ import React from 'react';
 import {Renderer} from 'mdes-core';
 import {CustomTouchableView} from 'react-native-components';
 
-export default class TouchableViewComponent extends React.Component<
-  any,
-  object
-> {
+export default class TouchableViewComponent extends React.Component<any, any> {
   static defaultProps = {};
 
   render() {
