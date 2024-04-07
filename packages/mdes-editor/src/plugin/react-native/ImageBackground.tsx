@@ -9,6 +9,7 @@ import {
 import {defaultLayoutStyle} from '../../utils';
 
 export class BaseImageBackgroundPlugin extends LayoutBasePlugin {
+  static scene: string[] = ['layout'];
   static id = 'BaseImageBackgroundPlugin';
   // 关联渲染器名字
   rendererName = 'base-imagebackground';

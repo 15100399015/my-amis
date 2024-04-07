@@ -9,6 +9,7 @@ import {
 import {defaultLayoutStyle} from '../../utils';
 
 export class BaseTextPlugin extends LayoutBasePlugin {
+  static scene: string[] = ['layout'];
   static id = 'BaseTextPlugin';
   // 关联渲染器名字
   rendererName = 'base-text';

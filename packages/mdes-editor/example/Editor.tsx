@@ -103,7 +103,23 @@ const variableSchemas = {
   }
 };
 
-const variableDefaultData = {};
+const variableDefaultData = {
+  appVariables: {
+    ProductName: 'BCC',
+    Banlance: 1234.888,
+    ProductNum: 10,
+    isOnline: false,
+    ProductList: ['BCC', 'BOS', 'VPC'],
+    PROFILE: {
+      FirstName: 'Amis',
+      Age: 18,
+      Address: {
+        street: 'ShangDi',
+        postcode: 100001
+      }
+    }
+  }
+};
 
 const variables: any = [
   {
@@ -254,7 +270,9 @@ export default class MDesSchemaEditor extends React.Component<any, any> {
             replaceText
           } as any
         }
-        ctx={{}}
+        ctx={{
+          ...variableDefaultData
+        }}
       />
     );
   }

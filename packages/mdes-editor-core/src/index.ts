@@ -8,9 +8,7 @@ import './component/ClassNameControl';
 import './plugin/AvailableRenderers';
 import './plugin/BasicToolbar';
 import './plugin/Code';
-import './plugin/DataDebug';
 import './plugin/ErrorRenderer';
-// import './plugin/Name';
 import './plugin/Outline';
 import './plugin/Unknown';
 

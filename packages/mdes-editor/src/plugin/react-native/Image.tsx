@@ -9,11 +9,11 @@ import {
 import {defaultLayoutStyle} from '../../utils';
 
 export class BaseImagePlugin extends LayoutBasePlugin {
+  static scene: string[] = ['layout'];
   static id = 'BaseImagePlugin';
   // 关联渲染器名字
   rendererName = 'base-image';
   $schema = '/schemas/PageSchema.json';
-
   // 组件名称
   name = '图片';
   isBaseComponent = true;
