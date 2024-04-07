@@ -34,7 +34,6 @@ import './TreeOptionControl';
 import './TransferTableControl';
 import './ButtonGroupControl';
 import './FlexSettingControl';
-import './FieldSetting';
 import './InputRangeValueControl';
 import './FunctionEditorControl';
 import './LinearGradientControl';

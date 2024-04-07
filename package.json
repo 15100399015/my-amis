@@ -7,7 +7,6 @@
     "packages/mdes",
     "packages/mdes-editor-core",
     "packages/mdes-editor",
-    "packages/mdes-theme-editor-helper",
     "packages/react-native-components"
   ],
   "scripts": {

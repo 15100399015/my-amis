@@ -39,7 +39,6 @@
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "mdes-editor-core": "^6.2.1",
-    "mdes-theme-editor-helper": "*",
     "lodash": "^4.17.15",
     "mobx-state-tree": "^3.17.3",
     "react-infinite-viewer": "^0.28.1"
@@ -97,7 +96,6 @@
     "mdes": "*",
     "mdes-core": "*",
     "mdes-formula": "*",
-    "mdes-theme-editor-helper": "*",
     "mdes-ui": "*",
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6"

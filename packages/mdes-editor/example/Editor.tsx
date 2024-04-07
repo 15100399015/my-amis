@@ -2,11 +2,9 @@
 import * as React from 'react';
 import {Portal} from 'react-overlays';
 import 'mdes';
-import 'mdes-theme-editor-helper';
-import {cxdData} from 'mdes-theme-editor-helper';
 import {Editor, ShortcutKey, setThemeConfig, Icon} from '../src/index';
 
-setThemeConfig(cxdData);
+setThemeConfig({});
 
 // @ts-ignore
 window.enableMDESDebug = true;

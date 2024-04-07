@@ -13,6 +13,8 @@ export class BaseLinearGradientPlugin extends LayoutBasePlugin {
   static id = 'BaseLinearGradientPlugin';
   // 关联渲染器名字
   rendererName = 'base-lineargradient';
+  $schema = '/schemas/PageSchema.json';
+
   // 组件名称
   name = '线性渐变';
   isBaseComponent = true;

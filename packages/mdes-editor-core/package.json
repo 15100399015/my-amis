@@ -44,7 +44,6 @@
     "static"
   ],
   "dependencies": {
-    "mdes-theme-editor-helper": "*",
     "axios": "0.21.1",
     "deep-diff": "1.0.2",
     "json-ast-comments": "^1.1.0",
@@ -111,7 +110,6 @@
     "mdes": "*",
     "mdes-core": "*",
     "mdes-formula": "*",
-    "mdes-theme-editor-helper": "*",
     "mdes-ui": "*",
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6"

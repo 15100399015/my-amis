@@ -3,7 +3,7 @@
  */
 import {hasIcon, mapObject, utils} from 'mdes';
 import type {PlainObject, Schema, SchemaNode} from 'mdes';
-import {getGlobalData} from 'mdes-theme-editor-helper';
+
 import {isExpression, resolveVariableAndFilter} from 'mdes-core';
 import type {VariableItem} from 'mdes-ui';
 import {isObservable, reaction} from 'mobx';
@@ -1152,7 +1152,6 @@ export function needFillPlaceholder(curProps: any) {
 // 设置主题数据
 export function setThemeConfig(config: any) {
   themeConfig = config;
-  themeOptionsData = getGlobalData(themeConfig);
   themeUselessPropKeys = Object.keys(getThemeConfig());
 }
 

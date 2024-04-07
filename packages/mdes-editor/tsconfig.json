@@ -17,10 +17,7 @@
       "path": "../mdes"
     },
     {
-      "path": "../mdes-editor-core"
-    },
-    {
-      "path": "../mdes-theme-editor-helper"
+      "path": "../mdes-editor-core",
     },
     {
       "path": "../react-native-components"

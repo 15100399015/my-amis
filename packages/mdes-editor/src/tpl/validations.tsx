@@ -5,7 +5,6 @@ import {
   getSchemaTpl,
   getI18nEnabled
 } from 'mdes-editor-core';
-import {ValidationOptions} from '../component/BaseControl';
 import {str2rules} from 'mdes';
 import {ValidatorTag} from '../validator';
 
@@ -593,7 +592,7 @@ setSchemaTpl(
   }
 );
 
-setSchemaTpl('validationControl', (value: Array<ValidationOptions> = []) => ({
+setSchemaTpl('validationControl', (value: Array<any> = []) => ({
   type: 'ae-validationControl',
   label: '校验规则',
   mode: 'normal',

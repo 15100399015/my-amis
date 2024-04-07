@@ -16,8 +16,6 @@ import omit from 'lodash/omit';
 import keys from 'lodash/keys';
 import type {Schema} from 'mdes';
 
-import type {DSField} from '../builder';
-
 /**
  * @deprecated 兼容当前组件的switch
  */
@@ -60,25 +58,6 @@ setSchemaTpl(
     };
   }
 );
-
-/**
- * 表单项字段name
- */
-setSchemaTpl('formItemName', {
-  label: '字段名',
-  name: 'name',
-  type: 'ae-DataBindingControl',
-  onBindingChange(field: DSField, onBulkChange: (value: any) => void) {
-    onBulkChange(field.resolveEditSchema?.() || {label: field.label});
-  }
-  // validations: {
-  //     matchRegexp: /^[a-z\$][a-z0-0\-_]*$/i
-  // },
-  // validationErrors: {
-  //     "matchRegexp": "请输入合法的变量名"
-  // },
-  // validateOnChange: false
-});
 
 setSchemaTpl(
   'formItemExtraName',

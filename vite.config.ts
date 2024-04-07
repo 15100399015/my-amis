@@ -93,10 +93,6 @@ export default defineConfig({
       {
         find: 'mdes-editor-core',
         replacement: resolve('./packages/mdes-editor-core/src')
-      },
-      {
-        find: 'mdes-theme-editor-helper',
-        replacement: resolve('./packages/mdes-theme-editor-helper/src')
       }
     ]
   }

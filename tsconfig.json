@@ -49,9 +49,6 @@
       "mdes-editor": [
         "./packages/mdes-editor/src/index.tsx"
       ],
-      "mdes-theme-editor-helper": [
-        "./packages/mdes-theme-editor-helper/src/index.ts"
-      ]
     }
   },
   "watchOptions": {
