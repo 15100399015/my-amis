@@ -2,10 +2,10 @@ import {setSchemaTpl, defaultValue} from 'mdes-editor-core';
 import kebabCase from 'lodash/kebabCase';
 
 // 渐变颜色选择器
-setSchemaTpl('theme:colorPickerGradient', (option: any = {}) => {
+setSchemaTpl('style:colorPickerGradient', (option: any = {}) => {
   return {
     mode: 'vertical',
-    type: 'mdes-theme-color-picker-gradient',
+    type: 'style-color-picker-gradient',
     label: '颜色',
     name: `gradient`,
     ...option

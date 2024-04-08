@@ -10,45 +10,29 @@ import cx from 'classnames';
 import {SketchPicker} from 'react-color';
 import {Icon, NumberInput, Overlay, PopOver} from 'mdes-ui';
 import cloneDeep from 'lodash/cloneDeep';
-import set from 'lodash/set';
-import get from 'lodash/get';
 
-interface ColorPickerProps {
-  value?: {colors?: GradientColorsType; range?: GradientRangeType};
+type ColorPickerProps = {
+  value?: {colors?: GradientColorsType; range?: number};
   onChange?: any;
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
-}
+};
 
-type GradientColorProps = {
-  value?: {colors?: GradientColorsType; range?: GradientRangeType};
+type GradientColorSelectProps = {
+  value?: {colors?: GradientColorsType; range?: number};
   onChange: any;
 };
 
-interface GradientRangeType {
-  start: {
-    x: number;
-    y: number;
-  };
-  end: {
-    x: number;
-    y: number;
-  };
-}
 type GradientColorsType = {color: string; position: number}[];
 
 // 渐变颜色
-function GradientColor(props: GradientColorProps) {
+function GradientColorSelect(props: GradientColorSelectProps) {
   const slider = useRef<HTMLDivElement>(null);
   const {value, onChange} = props;
   const [colors, setColors] = useState<GradientColorsType>([]);
   const [index, setIndex] = useState(0);
-  const [range, setRange] = useState<GradientRangeType>({
-    start: {x: 0, y: 0},
-    end: {x: 1, y: 1}
-  });
-
+  const [range, setRange] = useState<number>(0);
   const [move, setMove] = useState(false);
 
   let currentIndex = index;
@@ -58,10 +42,7 @@ function GradientColor(props: GradientColorProps) {
       {color: '#fff', position: 0},
       {color: '#fff', position: 100}
     ];
-    const defaultRange: GradientRangeType = {
-      start: {x: 0, y: 0},
-      end: {x: 1, y: 1}
-    };
+    const defaultRange: number = 0;
     if (value) {
       setColors(value.colors || defaultColors);
       setRange(value.range || defaultRange);
@@ -71,20 +52,15 @@ function GradientColor(props: GradientColorProps) {
     }
   }, [value]);
 
-  function gradientChange(
-    range: GradientRangeType,
-    colors: GradientColorsType
-  ) {
+  // 更新渐变值
+  function gradientChange(range: number, colors: GradientColorsType) {
     onChange({range, colors});
   }
 
   // 渐变角度改变
-  function rangeChange(path: string) {
-    return (value: number) => {
-      const newRange: GradientRangeType = set(cloneDeep(range), path, value);
-      setRange(newRange);
-      gradientChange(newRange, colors);
-    };
+  function rangeChange(value: number) {
+    setRange(value);
+    gradientChange(value, colors);
   }
   // 添加渐变点
   function handleClickSlider(e: React.MouseEvent) {
@@ -189,12 +165,12 @@ function GradientColor(props: GradientColorProps) {
   }
 
   return (
-    <div className="Theme-GradientColor">
-      <div className="Theme-GradientColor-slider">
+    <div className="ae-GradientColor">
+      <div className="ae-GradientColor-slider">
         {/* 渐变值 */}
         <div
           ref={slider}
-          className="Theme-GradientColor-slider-inner"
+          className="ae-GradientColor-slider-inner"
           style={{
             backgroundImage: `linear-gradient(to right,${colors
               .map(item => `${item.color} ${item.position}%`)
@@ -207,8 +183,8 @@ function GradientColor(props: GradientColorProps) {
               <div
                 key={i}
                 className={cx(
-                  'Theme-GradientColor-slider-inner-item',
-                  i === index && 'Theme-GradientColor-slider-inner-item--active'
+                  'ae-GradientColor-slider-inner-item',
+                  i === index && 'ae-GradientColor-slider-inner-item--active'
                 )}
                 onMouseDown={e => {
                   handleDownSliderItem(e, i);
@@ -218,48 +194,19 @@ function GradientColor(props: GradientColorProps) {
                 }}
                 style={{
                   left: `calc(${item.position}% - 7px)`,
-                  background: item.color
+                  backgroundColor: item.color
                 }}
               ></div>
             );
           })}
         </div>
-      </div>
-      <div style={{display: 'flex'}}>
-        <div className="Theme-GradientColor-range">
+        <div className="ae-GradientColor-range">
           <NumberInput
-            max={1}
+            max={360}
             min={0}
-            step={0.1}
-            value={get(range, 'start.x')}
-            onChange={rangeChange('start.x')}
-          />
-        </div>
-        <div className="Theme-GradientColor-range">
-          <NumberInput
-            max={1}
-            min={0}
-            step={0.1}
-            value={get(range, 'start.y')}
-            onChange={rangeChange('start.y')}
-          />
-        </div>
-        <div className="Theme-GradientColor-range">
-          <NumberInput
-            max={1}
-            min={0}
-            step={0.1}
-            value={get(range, 'end.x')}
-            onChange={rangeChange('end.x')}
-          />
-        </div>
-        <div className="Theme-GradientColor-range">
-          <NumberInput
-            max={1}
-            min={0}
-            step={0.1}
-            value={get(range, 'end.y')}
-            onChange={rangeChange('end.y')}
+            step={1}
+            value={range}
+            onChange={rangeChange}
           />
         </div>
       </div>
@@ -284,7 +231,7 @@ function GradientColor(props: GradientColorProps) {
   );
 }
 
-function ColorPicker(props: ColorPickerProps) {
+function ColorPickerGradient(props: ColorPickerProps) {
   const {value, onChange, disabled, readOnly} = props;
 
   const container = useRef<HTMLDivElement>(null);
@@ -305,18 +252,21 @@ function ColorPicker(props: ColorPickerProps) {
   return (
     <div
       className={cx(
-        'Theme-ColorPicker',
+        'ae-ColorPickerGradient',
         disabled && 'is-disabled',
         readOnly && 'is-readOnly'
       )}
       ref={container}
     >
       <div
-        className={cx('Theme-ColorPicker', 'Theme-ColorPicker--input')}
+        className={cx(
+          'ae-ColorPickerGradient',
+          'ae-ColorPickerGradient--input'
+        )}
         onClick={colorSelectHandler}
         ref={target}
       >
-        <div className={cx('Theme-ColorPicker-input')}>
+        <div className={cx('ae-ColorPickerGradient-input')}>
           <div>{(value?.colors || []).map(({color}) => color).join(',')}</div>
         </div>
         {value && !disabled && !readOnly ? (
@@ -327,8 +277,8 @@ function ColorPicker(props: ColorPickerProps) {
 
         <span
           className={cx(
-            'Theme-ColorPicker-arrow',
-            show && 'Theme-ColorPicker-arrow--active'
+            'ae-ColorPickerGradient-arrow',
+            show && 'ae-ColorPickerGradient-arrow--active'
           )}
         >
           <Icon icon="right-arrow-bold" className="icon" />
@@ -343,9 +293,9 @@ function ColorPicker(props: ColorPickerProps) {
         placement="bottom"
       >
         <PopOver overlay onHide={() => setShow(false)}>
-          <div className="Theme-ColorSelect">
-            <div className="Theme-ColorSelect-content">
-              <GradientColor value={value} onChange={onChange} />
+          <div className="ae-ColorSelect">
+            <div className="ae-ColorSelect-content">
+              <GradientColorSelect value={value} onChange={onChange} />
             </div>
           </div>
         </PopOver>
@@ -354,15 +304,15 @@ function ColorPicker(props: ColorPickerProps) {
   );
 }
 
-export default ColorPicker;
+export default ColorPickerGradient;
 
 @FormItem({
-  type: 'mdes-theme-color-picker-gradient',
+  type: 'style-color-picker-gradient',
   strictMode: false,
   renderLabel: true
 })
 export class ColorPickerGradientRenderer extends React.Component<FormControlProps> {
   render() {
-    return <ColorPicker {...this.props} />;
+    return <ColorPickerGradient {...this.props} />;
   }
 }

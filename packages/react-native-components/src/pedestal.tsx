@@ -28,37 +28,37 @@ class PedestalComponentPool {
   private _linearGradient: any = null!;
   get View() {
     if (!this._view) {
-      return throwError('View 组件未注册');
+      throwError('View 组件未注册');
     }
     return this._view;
   }
   get Image() {
     if (!this._image) {
-      return throwError('Image 组件未注册');
+      throwError('Image 组件未注册');
     }
     return this._image;
   }
   get ImageBackground() {
     if (!this._imageBackground) {
-      return throwError('ImageBackground 组件未注册');
+      throwError('ImageBackground 组件未注册');
     }
     return this._imageBackground;
   }
   get Text() {
     if (!this._text) {
-      return throwError('Text 组件未注册');
+      throwError('Text 组件未注册');
     }
     return this._text;
   }
   get TouchableOpacity() {
     if (!this._touchableOpacity) {
-      return throwError('TouchableOpacity 组件未注册');
+      throwError('TouchableOpacity 组件未注册');
     }
     return this._touchableOpacity;
   }
   get LinearGradient() {
     if (!this._linearGradient) {
-      return throwError('LinearGradient 组件未注册');
+      throwError('LinearGradient 组件未注册');
     }
     return this._linearGradient;
   }

@@ -6,15 +6,25 @@ export function useStyle(style: StyleProp<any> = {}) {
   return useMemo(() => handleStyle(style), [style]);
 }
 
-export function useGradient(props: any) {
+export type TGradientParams = {
+  colors?: {color: string; position: number}[];
+  range?: number;
+};
+export function useGradient(gradient: TGradientParams = {}) {
   return useMemo(() => {
-    const colors: {color: string; position: number}[] =
-      props.gradient?.colors || [];
+    const colors = [];
+    const locations = [];
+    for (let i = 0; i < (gradient.colors || []).length; i++) {
+      const element = gradient.colors![i];
+      colors.push(element.color);
+      locations.push(element.position / 100);
+    }
     return {
-      colors: colors.map(({color}) => color),
-      locations: colors.map(({position}) => position / 100),
-      start: props.gradient?.range?.start || {},
-      end: props.gradient?.range?.end || {}
+      colors: colors,
+      locations: locations,
+      useAngle: true,
+      angleCenter: {x: 0.5, y: 0.5},
+      angle: gradient.range || 0
     };
-  }, [props.gradient]);
+  }, [gradient]);
 }

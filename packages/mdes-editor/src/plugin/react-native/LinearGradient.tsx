@@ -55,7 +55,7 @@ export class BaseLinearGradientPlugin extends LayoutBasePlugin {
       {
         title: '属性',
         body: [
-          getSchemaTpl('theme:colorPickerGradient', {
+          getSchemaTpl('style:colorPickerGradient', {
             label: '渐变'
           })
         ]
