@@ -15,6 +15,10 @@ export type PedestalComponent = {
   LinearGradient: any;
 };
 
+function throwError(message: string) {
+  throw new Error(message);
+}
+
 class PedestalComponentPool {
   private _view: typeof View = null!;
   private _image: typeof Image = null!;
@@ -24,49 +28,37 @@ class PedestalComponentPool {
   private _linearGradient: any = null!;
   get View() {
     if (!this._view) {
-      const error = new Error('View 组件未注册');
-      console.log(error);
-      throw error;
+      return throwError('View 组件未注册');
     }
     return this._view;
   }
   get Image() {
     if (!this._image) {
-      const error = new Error('Image 组件未注册');
-      console.log(error);
-      throw error;
+      return throwError('Image 组件未注册');
     }
     return this._image;
   }
   get ImageBackground() {
     if (!this._imageBackground) {
-      const error = new Error('ImageBackground 组件未注册');
-      console.log(error);
-      throw error;
+      return throwError('ImageBackground 组件未注册');
     }
     return this._imageBackground;
   }
   get Text() {
     if (!this._text) {
-      const error = new Error('Text 组件未注册');
-      console.log(error);
-      throw error;
+      return throwError('Text 组件未注册');
     }
     return this._text;
   }
   get TouchableOpacity() {
     if (!this._touchableOpacity) {
-      const error = new Error('TouchableOpacity 组件未注册');
-      console.log(error);
-      throw error;
+      return throwError('TouchableOpacity 组件未注册');
     }
     return this._touchableOpacity;
   }
   get LinearGradient() {
     if (!this._linearGradient) {
-      const error = new Error('LinearGradient 组件未注册');
-      console.log(error);
-      throw error;
+      return throwError('LinearGradient 组件未注册');
     }
     return this._linearGradient;
   }
