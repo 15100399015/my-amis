@@ -31,8 +31,6 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-native-web": "^0.19.10",
-    "react-native-web-linear-gradient": "^1.1.2",
     "mdes-formula": "^6.2.1"
   },
   "devDependencies": {

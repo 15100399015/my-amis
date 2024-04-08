@@ -1,3 +1,4 @@
+import './init';
 import './Image';
 import './View';
 import './Text';

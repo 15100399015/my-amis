@@ -4,3 +4,4 @@ export * from './components/Text';
 export * from './components/View';
 export * from './components/LinearGradient';
 export * from './components/TouchableView';
+export * from './pedestal';

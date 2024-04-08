@@ -1,14 +1,16 @@
 import React, {useMemo} from 'react';
-import {Text, TextProps} from 'react-native';
+import type {TextProps} from 'react-native';
+import {Pedestal} from '../../pedestal';
 import {useStyle} from '../../use/styles';
 import {getContextDataByTpl} from '../../util/contextData';
+import {ErrorBoundaryWrapper} from '../ErrorBoundaryWrapper';
 interface IProps extends TextProps {
   tpl?: string;
   placeholder?: string;
   data: any;
 }
 
-export function CustomText(props: IProps) {
+export function _CustomText(props: IProps) {
   const style = useStyle(props.style);
 
   // 根据 tpl 渲染内容
@@ -19,8 +21,10 @@ export function CustomText(props: IProps) {
   }, [props.tpl, props.data]);
 
   return (
-    <Text {...props} style={style}>
+    <Pedestal.Text {...props} style={style}>
       {String(content) || props.placeholder}
-    </Text>
+    </Pedestal.Text>
   );
 }
+
+export const CustomText = ErrorBoundaryWrapper(_CustomText);

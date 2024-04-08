@@ -1,13 +1,25 @@
 import React from 'react';
-import {ImageBackground, ImageBackgroundProps} from 'react-native';
+import type {ImageBackgroundProps} from 'react-native';
+import {Pedestal} from '../../pedestal';
 import {useStyle} from '../../use/styles';
+import {ErrorBoundaryWrapper} from '../ErrorBoundaryWrapper';
 
 interface IProps extends ImageBackgroundProps {
   src?: string;
 }
 
-export function CustomImageBackground(props: IProps) {
+export function _CustomImageBackground(props: IProps) {
   const style = useStyle(props.style);
 
-  return <ImageBackground {...props} style={style} source={{uri: props.src}} />;
+  return (
+    <Pedestal.ImageBackground
+      {...props}
+      style={style}
+      source={{uri: props.src}}
+    />
+  );
 }
+
+export const CustomImageBackground = ErrorBoundaryWrapper(
+  _CustomImageBackground
+);
