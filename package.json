@@ -6,8 +6,8 @@
     "packages/mdes-ui",
     "packages/mdes",
     "packages/mdes-editor-core",
-    "packages/mdes-editor",
-    "packages/react-native-components"
+    "packages/@svf/mdes-editor",
+    "packages/@svf/mdes-renderer-rn"
   ],
   "scripts": {
     "start": "vite",

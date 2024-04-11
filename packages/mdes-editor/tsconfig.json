@@ -20,7 +20,7 @@
       "path": "../mdes-editor-core",
     },
     {
-      "path": "../react-native-components"
+      "path": "../@svf/mdes-renderer-rn"
     }
   ]
 }

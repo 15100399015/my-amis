@@ -28,8 +28,8 @@
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
-      "react-native-components": [
-        "./packages/react-native-components/src/index.tsx"
+      "@svf/mdes-renderer-rn": [
+        "./packages/@svf/mdes-renderer-rn/src/index.tsx"
       ],
       "mdes-core": [
         "./packages/mdes-core/src/index.tsx"

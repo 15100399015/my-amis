@@ -51,8 +51,8 @@ export default defineConfig({
         replacement: 'react-native-web-linear-gradient'
       },
       {
-        find: 'react-native-components',
-        replacement: resolve('./packages/react-native-components/src')
+        find: '@svf/mdes-renderer-rn',
+        replacement: resolve('./packages/@svf/mdes-renderer-rn/src')
       },
       {
         find: 'mdes-formula/lib',
@@ -85,10 +85,6 @@ export default defineConfig({
       {
         find: 'mdes',
         replacement: resolve('./packages/mdes/src')
-      },
-      {
-        find: 'mdes-editor',
-        replacement: resolve('./packages/mdes-editor/src')
       },
       {
         find: 'mdes-editor-core',
