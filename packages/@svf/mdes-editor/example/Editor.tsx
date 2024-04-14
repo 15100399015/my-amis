@@ -2,23 +2,13 @@
 import * as React from 'react';
 import {Portal} from 'react-overlays';
 import 'mdes';
-import {Editor, ShortcutKey, setThemeConfig, Icon} from '../src/index';
-
-setThemeConfig({});
-
-// @ts-ignore
-window.enableMDESDebug = true;
+import {Editor, ShortcutKey, Icon} from '../src/index';
 
 const schema = {
   type: 'page',
   title: 'Simple Form Page',
   regions: ['body'],
   body: []
-};
-
-const formSchema = {
-  type: 'doc-entity',
-  fields: []
 };
 
 const variableSchemas = {
@@ -131,8 +121,7 @@ const variables: any = [
 
 const EditorType = {
   EDITOR: 'editor',
-  MOBILE: 'mobile',
-  FORM: 'form'
+  MOBILE: 'mobile'
 };
 
 export default class MDesSchemaEditor extends React.Component<any, any> {
@@ -154,15 +143,6 @@ export default class MDesSchemaEditor extends React.Component<any, any> {
   }
 
   getSchema(type: string) {
-    if (type === EditorType.FORM) {
-      const schema = localStorage.getItem('editting_schema_form');
-
-      if (schema) {
-        return JSON.parse(schema);
-      }
-      return formSchema;
-    }
-
     const lsSchema = localStorage.getItem('editting_schema');
 
     if (lsSchema) {
@@ -173,13 +153,7 @@ export default class MDesSchemaEditor extends React.Component<any, any> {
   }
 
   handleChange = (value: any) => {
-    const type = this.state.type;
-
-    if (type === EditorType.FORM) {
-      localStorage.setItem('editting_schema_form', JSON.stringify(value));
-    } else {
-      localStorage.setItem('editting_schema', JSON.stringify(value));
-    }
+    localStorage.setItem('editting_schema', JSON.stringify(value));
 
     this.setState({
       schema: value
@@ -237,7 +211,6 @@ export default class MDesSchemaEditor extends React.Component<any, any> {
     const {theme} = this.props;
     const {preview, type, schema} = this.state;
     const isMobile = type === EditorType.MOBILE;
-    const {replaceText} = this.state;
 
     return (
       <Editor
@@ -257,17 +230,14 @@ export default class MDesSchemaEditor extends React.Component<any, any> {
         actionOptions={{
           showOldEntry: false
         }}
-        mdesEnv={
-          {
-            variable: {
-              id: 'appVariables',
-              namespace: 'appVariables',
-              schema: variableSchemas,
-              data: variableDefaultData
-            },
-            replaceText
-          } as any
-        }
+        mdesEnv={{
+          variable: {
+            id: 'appVariables',
+            namespace: 'appVariables',
+            schema: variableSchemas,
+            data: variableDefaultData
+          }
+        }}
         ctx={{
           ...variableDefaultData
         }}

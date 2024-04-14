@@ -19,7 +19,6 @@ export * from './manager';
 export * from './plugin';
 export * from './icons/index';
 export * from './mocker';
-import {BasicEditor, RendererEditor} from './compat';
 import MiniEditor from './component/MiniEditor';
 import CodeEditor from './component/Panel/MDesCodeEditor';
 import IFramePreview from './component/IFramePreview';
@@ -44,8 +43,6 @@ export {
   MiniEditor,
   utils,
   mapReactElement,
-  RendererEditor,
-  BasicEditor,
   CodeEditor,
   VRenderer,
   RegionWrapper,

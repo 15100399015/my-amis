@@ -32,7 +32,7 @@ import * as utils from './utils/helper';
 import {getEnv} from 'mobx-state-tree';
 
 import {RegisterStore, RendererStore} from './store';
-import type {IColumn, IColumn2, IRow, IRow2} from './store';
+import type {IColumn, IRow} from './store';
 import {
   setDefaultLocale,
   getDefaultLocale,
@@ -198,8 +198,6 @@ export {
   IItem,
   IColumn,
   IRow,
-  IColumn2,
-  IRow2,
   OnEventProps,
   FormSchemaBase,
   filterTarget,
@@ -217,6 +215,11 @@ export function render(
   options: RenderOptions = {},
   pathPrefix: string = ''
 ): JSX.Element {
+  console.log('schema', schema);
+  console.log('props', props);
+  console.log('options', options);
+  console.log('pathPrefix', pathPrefix);
+
   return (
     <MDESRenderer
       {...props}
