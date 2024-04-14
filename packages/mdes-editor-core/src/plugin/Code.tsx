@@ -17,15 +17,11 @@ export class CodePlugin extends BasePlugin {
   static scene = ['layout'];
   order = -9999;
 
-  buildJSONSchema({info}: RendererJSONSchemaResolveEventContext) {
-    return info.$schema;
-  }
-
   buildEditorPanel(
     {info, selections}: BuildPanelEventContext,
     panels: Array<BasicPanelItem>
   ) {
-    if (this.manager.store.jsonSchemaUri && !selections.length) {
+    if (!selections.length) {
       panels.push({
         key: 'code',
         icon: 'png-icon code-png', // 'fa fa-code',

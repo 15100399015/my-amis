@@ -210,6 +210,7 @@ export {
   envOverwrite
 };
 
+// render 方法
 export function render(
   schema: Schema,
   props: RootRenderProps = {},
@@ -226,6 +227,7 @@ export function render(
   );
 }
 
+// 组件
 function MDESRenderer({
   schema,
   options,
@@ -324,7 +326,9 @@ function MDESRenderer({
   }, [schema, locale]);
 
   return (
+    // 环境上下文
     <EnvContext.Provider value={env}>
+      {/* 根渲染器 */}
       <ScopedRootRenderer
         {...props}
         schema={schema}

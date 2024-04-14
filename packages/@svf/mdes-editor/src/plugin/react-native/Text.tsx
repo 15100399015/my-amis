@@ -1,6 +1,6 @@
 import {
   BaseEventContext,
-  LayoutBasePlugin,
+  BasePlugin,
   RegionConfig,
   getSchemaTpl,
   RendererPluginEvent,
@@ -8,8 +8,8 @@ import {
 } from 'mdes-editor-core';
 import {defaultLayoutStyle} from '../../utils';
 
-export class BaseTextPlugin extends LayoutBasePlugin {
-  static scene: string[] = ['layout'];
+export class BaseTextPlugin extends BasePlugin {
+  static scene: string[] = ['global'];
   static id = 'BaseTextPlugin';
   // 关联渲染器名字
   rendererName = 'base-text';

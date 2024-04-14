@@ -1,5 +1,9 @@
 目录介绍
 
+- @svf/mdes-editor
+  设计器主项目
+- @svf/mdes-renderer-rn
+  react-native 的渲染组件
 - mdes
   主要是一些内置渲染的注册
 - mdes-core

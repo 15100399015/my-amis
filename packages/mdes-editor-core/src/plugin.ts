@@ -193,11 +193,6 @@ export interface RendererInfo extends RendererScaffoldInfo {
 
   rendererName?: string;
 
-  /**
-   * json schema 协议
-   */
-  $schema?: string;
-
   isBaseComponent?: boolean;
 
   /**
@@ -867,13 +862,6 @@ export interface PluginInterface
   ) => BasicRendererInfo | void;
 
   /**
-   * 生成节点的 JSON Schema 的 uri 地址。
-   */
-  buildJSONSchema?: (
-    context: RendererJSONSchemaResolveEventContext
-  ) => void | string;
-
-  /**
    * 构建右上角功能按钮集合
    */
   buildEditorToolbar?: (
@@ -1046,7 +1034,6 @@ export abstract class BasePlugin implements PluginInterface {
         wrapperProps: plugin.wrapperProps,
         wrapperResolve: plugin.wrapperResolve,
         filterProps: plugin.filterProps,
-        $schema: plugin.$schema,
         renderRenderer: plugin.renderRenderer,
         multifactor: plugin.multifactor,
         scaffoldForm: plugin.scaffoldForm,

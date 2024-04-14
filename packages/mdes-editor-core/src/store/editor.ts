@@ -199,8 +199,6 @@ export const MainStore = types
     leftPanelKey: '',
     leftPanelOpenStatus: true, // 左侧面板展开状态，默认展示
 
-    jsonSchemaUri: '',
-
     scaffoldForm: types.maybe(types.frozen<ScaffoldFormContext>()),
     scaffoldFormStep: 0,
     /** 脚手架是否进行过下一步 */
@@ -1658,10 +1656,6 @@ export const MainStore = types
 
       setInsertSelected(id: string) {
         self.insertSelected = id;
-      },
-
-      setJSONSchemaUri(schemaUri: string) {
-        self.jsonSchemaUri = schemaUri;
       },
 
       addModal(modal?: DialogSchema | DrawerSchema) {

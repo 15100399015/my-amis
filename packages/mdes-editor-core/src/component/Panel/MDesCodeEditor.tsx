@@ -10,59 +10,10 @@ import cx from 'classnames';
 import {prompt, toast} from 'mdes';
 import debounce from 'lodash/debounce';
 import isArray from 'lodash/isArray';
-import findIndex from 'lodash/findIndex';
 import {parse, stringify} from 'json-ast-comments';
 import isPlainObject from 'lodash/isPlainObject';
 
 const internalSchema = /^\/schemas\/(.*).json$/;
-
-async function buildSchema(
-  schemaUrl: string,
-  definition: string,
-  fileUri: string,
-  origin: any
-) {
-  const schemas: Array<{
-    uri: string;
-    fileMatch?: Array<any>;
-    schema: any;
-  }> = Array.isArray(origin) ? origin.concat() : [];
-
-  // 开发环境直接读取本地 schema.json 文件。
-  if (process.env.NODE_ENV !== 'production') {
-    schemas.some(item => item.uri === schemaUrl) ||
-      schemas.push({
-        uri: schemaUrl,
-        // @ts-ignore
-        schema: await import('mdes/schema.json').then(item => item.default)
-      });
-  }
-
-  if (internalSchema.test(definition)) {
-    const rawName = RegExp.$1;
-    const uri = `${schemaUrl.replace(
-      /^(\w+\:\/\/[^\/]+)\/.*$/,
-      '$1'
-    )}/schemas/${rawName}.json`;
-
-    // 如果存在，先删掉
-    const idx = findIndex(schemas, item => item.fileMatch?.[0] === fileUri);
-    if (~idx) {
-      schemas.splice(idx, 1);
-    }
-
-    schemas.push({
-      uri,
-      fileMatch: [fileUri],
-      schema: {
-        $schema: 'http://json-schema.org/draft-07/schema#',
-        $ref: `${schemaUrl}#/definitions/${rawName}`
-      }
-    });
-  }
-
-  return schemas;
-}
 
 const codeErrorWarning = debounce(e => {
   toast.warning(`代码有误，错误的地方是\n ${e.toString().split('\n')[1]}`);
@@ -73,8 +24,6 @@ export interface MDesCodeEditorProps {
   onChange: (value: any, diff: any) => void;
   onPaste?: () => void;
   disabled?: boolean;
-  $schemaUrl?: string;
-  $schema?: string;
   className?: string;
   theme?: string;
 }
@@ -95,10 +44,6 @@ export default class MDesCodeEditor extends React.Component<MDesCodeEditorProps>
 
   componentDidUpdate(prevProps: MDesCodeEditorProps) {
     const props = this.props;
-
-    if (prevProps.$schema !== props.$schema && this.monaco) {
-      this.changeJsonOptions(props);
-    }
 
     if (
       isObjectShallowModified(props.value, prevProps.value) &&
@@ -126,8 +71,6 @@ export default class MDesCodeEditor extends React.Component<MDesCodeEditorProps>
 
     if (isArray(value)) {
       return stringify(value);
-    } else if (!value.type && props.$schema?.match(/PageSchema/i)) {
-      value.type = 'page';
     } else if (!value.type) {
       delete value.type;
     }
@@ -186,31 +129,6 @@ export default class MDesCodeEditor extends React.Component<MDesCodeEditorProps>
     }
   );
 
-  async changeJsonOptions(props: MDesCodeEditorProps = this.props) {
-    const monaco = this.monaco;
-    let schemaUrl =
-      props.$schemaUrl ||
-      `${window.location.protocol}//${window.location.host}/schema.json`;
-
-    if (schemaUrl.indexOf('/') === 0) {
-      schemaUrl = `${window.location.protocol}//${window.location.host}${schemaUrl}`;
-    }
-
-    const schemas = await buildSchema(
-      schemaUrl,
-      props.$schema!,
-      monaco.Uri.parse(this.uri).toString(),
-      monaco.languages.json?.jsonDefaults.diagnosticsOptions.schemas
-    );
-
-    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
-      schemas: schemas,
-      validate: true,
-      enableSchemaRequest: true,
-      allowComments: true
-    });
-  }
-
   editorFactory = (
     containerElement: HTMLElement,
     monaco: any,
@@ -242,7 +160,6 @@ export default class MDesCodeEditor extends React.Component<MDesCodeEditorProps>
     this.editor = editor;
     this.monaco = monaco;
 
-    this.changeJsonOptions(this.props);
     this.props.onPaste &&
       this.toDispose.push(this.editor.onDidPaste(this.props.onPaste).dispose);
   };

@@ -50,7 +50,6 @@ import {
   guid,
   reactionWithOldValue,
   reGenerateID,
-  JsonGenerateID,
   isString,
   isObject,
   isLayoutPlugin,
@@ -327,7 +326,6 @@ export class EditorManager {
         async (id, oldValue) => {
           // 如果当前正在插入，则先关闭。
           this.store.insertId && this.store.closeInsertPanel();
-          this.buildJSONSchemaUri();
           this.buildToolbars();
           await this.buildRenderers();
           this.buildPanels();
@@ -478,41 +476,6 @@ export class EditorManager {
       schema,
       data: ''
     };
-  }
-
-  /**
-   * 构建 JSONSchema Uri，这样可以用代码模式编辑了。
-   */
-  buildJSONSchemaUri() {
-    const id = this.store.activeId;
-    let jsonschemaUri = '';
-
-    if (id) {
-      const context: RendererJSONSchemaResolveEventContext =
-        this.buildEventContext(id);
-
-      const event = this.trigger('before-resolve-json-schema', context);
-      jsonschemaUri = event.context.data;
-      if (!event.prevented) {
-        this.plugins.forEach(editor => {
-          if (jsonschemaUri) {
-            return;
-          }
-
-          const result = editor.buildJSONSchema?.(context);
-
-          if (result) {
-            jsonschemaUri = result;
-          }
-        });
-
-        context.data = jsonschemaUri;
-        const event = this.trigger('after-resolve-json-schema', context);
-        jsonschemaUri = event.data;
-      }
-    }
-
-    this.store.setJSONSchemaUri(jsonschemaUri);
   }
 
   buildToolbars() {

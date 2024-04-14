@@ -116,7 +116,6 @@ import {TabsTransferPickerControlSchema} from './renderers/Form/TabsTransferPick
 import {UserSelectControlSchema} from './renderers/Form/UserSelect';
 import {JSONSchemaEditorControlSchema} from './renderers/Form/JSONSchemaEditor';
 import {InputSignatureSchema} from './renderers/Form/InputSignature';
-import {TableSchema2} from './renderers/Table2';
 import {
   BaseSchemaWithoutType,
   FormBaseControl,
@@ -203,14 +202,12 @@ export type SchemaType =
   | 'status'
   | 'table'
   | 'static-table' // 这个几个跟表单项同名，再form下面用必须带前缀 static-
-  | 'table2'
   | 'html'
   | 'tpl'
   | 'tasks'
   | 'vbox'
   | 'wizard'
   | 'wrapper'
-  | 'web-component'
   | 'anchor-nav'
   | 'steps'
   | 'control'
@@ -402,7 +399,6 @@ export type SchemaObject =
   | StatusSchema
   | SpinnerSchema
   | TableSchema
-  | TableSchema2
   | TabsSchema
   | TasksSchema
   | VBoxSchema

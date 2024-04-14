@@ -12,7 +12,7 @@ export default class CodeEditorPanel extends React.Component<PanelProps> {
   }
 
   render() {
-    const {onChange, manager, store} = this.props;
+    const {onChange, store} = this.props;
 
     return (
       <div className="ae-CodePanel">
@@ -21,8 +21,6 @@ export default class CodeEditorPanel extends React.Component<PanelProps> {
           <MDesCodeEditor
             value={store.valueWithoutHiddenProps}
             onChange={onChange}
-            $schema={store.jsonSchemaUri}
-            $schemaUrl={manager.config.$schemaUrl}
             onPaste={this.handleCodePaste}
           />
         </div>

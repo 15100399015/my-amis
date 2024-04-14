@@ -4,13 +4,11 @@
  */
 import {Schema} from 'mdes-core';
 import {addSchemaFilter} from 'mdes-core';
-import {CheckboxControlRenderer} from './renderers/Form/Checkbox';
-import {FormRenderer, isObjectShallowModified} from 'mdes-core';
-import {FieldSetRenderer} from './renderers/Form/FieldSet';
-import {CardRenderer} from './renderers/Card';
-import {ListItemRenderer} from './renderers/List';
-import {ButtonGroupControlRenderer} from './renderers/Form/ButtonGroupSelect';
 import {getLevelFromClassName} from 'mdes-core';
+import {FormRenderer, isObjectShallowModified} from 'mdes-core';
+import {CheckboxControlRenderer} from './renderers/Form/Checkbox';
+import {FieldSetRenderer} from './renderers/Form/FieldSet';
+import {ButtonGroupControlRenderer} from './renderers/Form/ButtonGroupSelect';
 import {FileControlRenderer} from './renderers/Form/InputFile';
 import {ImageControlRenderer} from './renderers/Form/InputImage';
 import {RichTextControlRenderer} from './renderers/Form/InputRichText';
@@ -184,13 +182,6 @@ function convertArray2Hbox(arr: Array<any>): any {
 
 // CRUD/List  和 CRUD/Card 的 body 中的数组用法转成 hbox
 addSchemaFilter(function (schema: Schema, renderer) {
-  if (
-    renderer.component !== CardRenderer &&
-    renderer.component !== ListItemRenderer
-  ) {
-    return schema;
-  }
-
   if (Array.isArray(schema.body)) {
     let flag = false;
     let converted = schema.body.map((item: any) => {

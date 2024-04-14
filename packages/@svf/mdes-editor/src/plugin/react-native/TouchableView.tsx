@@ -9,7 +9,7 @@ import {
 import {defaultLayoutStyle} from '../../utils';
 
 export class BaseTouchableViewPlugin extends LayoutBasePlugin {
-  static scene: string[] = ['layout'];
+  static scene: string[] = ['global'];
   static id = 'BaseTouchableViewPlugin';
   // 关联渲染器名字
   rendererName = 'base-touchableview';

@@ -9,7 +9,7 @@ import {
 import {defaultLayoutStyle} from '../../utils';
 
 export class BaseLinearGradientPlugin extends LayoutBasePlugin {
-  static scene: string[] = ['layout'];
+  static scene: string[] = ['global'];
   static id = 'BaseLinearGradientPlugin';
   // 关联渲染器名字
   rendererName = 'base-lineargradient';
